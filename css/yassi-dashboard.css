@@ -13,19 +13,17 @@ body {
     background: #0a0f1c;
 }
 
+/* ===== GAME CONTAINER ===== */
 .game-container {
     position: relative;
-    width: min(420px, 100vw - 24px);
-    height: min(860px, 100vh - 24px);
-    overflow: hidden;
-    border-radius: 30px;
-    /* CSS file is in /css, so assets live in /assets */
+    width: 400px;
+    height: 800px;
     background: url('../assets/Yassi-Background.png') center/cover no-repeat;
-    border: 6px solid #1a1a1a;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    border-radius: 30px;
+    overflow: hidden;
 }
 
-
+/* ===== OVERLAY ===== */
 .overlay {
     position: absolute;
     inset: 0;
@@ -33,63 +31,87 @@ body {
     z-index: 1;
 }
 
-/* --- HEADER & TAGLINE --- */
-.header-section {
+/* =========================
+   🔥 TOP UI FIX (IMPORTANT)
+========================= */
+.top-ui {
     position: absolute;
     top: 15px;
     left: 15px;
-    z-index: 10;
+    right: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+    z-index: 20;
 }
 
-.logo img { width: 110px; }
-
-.tagline {
-    background: #1aa9ff;
-    color: white;
-    font-size: 13px;
-    font-weight: 700;
-    padding: 4px 12px;
-    border-radius: 12px;
-    border: 2px solid #fff;
-    margin-top: -5px;
-    box-shadow: 0 4px 0 #0077c2;
+/* reset old positioning */
+.header-section,
+.status-panel,
+.currency {
+    position: static;
 }
 
-/* --- STATUS PANEL --- */
+/* ===== LOGO (LEFT) ===== */
+.header-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo img {
+    width: 110px;
+}
+
+/* ===== STATUS (CENTER) ===== */
 .status-panel {
-    position: absolute;
-    top: 15px;
-    left: 50%;
-    right: auto;
-    transform: translateX(-50%);
-    width:10px;
-    background: rgba(16, 22, 35, 0.9);
+    width: 320px;
+    background: rgba(16, 22, 35, 0.85);
     border-radius: 18px;
-    padding: 12px;
+    padding: 10px 14px;
     color: white;
-    z-index: 10;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
 }
 
+.bar {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    margin-bottom: 8px;
+}
 
-.bar-title { font-size: 13px; font-weight: 800; margin-bottom: 3px; }
-.progress { height: 10px; background: #333; border-radius: 10px; overflow: hidden; margin-bottom: 6px; }
-.fill { height: 100%; border-radius: 10px; }
+.bar:last-child {
+    margin-bottom: 0;
+}
+
+.bar-title {
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.2px;
+}
+
+.progress {
+    height: 10px;
+    background: #333;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.fill {
+    height: 100%;
+    border-radius: 10px;
+}
+
 .green { background: #7ed321; }
 .blue { background: #37c8ff; }
 .yellow { background: #ffbc2f; }
 
-/* --- CURRENCY --- */
+/* ===== CURRENCY (RIGHT) ===== */
 .currency {
-    position: absolute;
-    top: 5px;
-    right: 15px;
-    left: auto;
-    z-index: 10;
     display: flex;
     flex-direction: column;
     gap: 6px;
 }
-
 
 .money-box {
     background: rgba(0,0,0,0.85);
@@ -97,16 +119,21 @@ body {
     padding: 5px 12px;
     border-radius: 12px;
     font-weight: 800;
-    font-size: 18px;
+    font-size: 16px;
+    width: 125px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 125px;
 }
 
-.plus-btn { background: #7ed321; border-radius: 4px; padding: 0 5px; font-size: 14px; }
+.plus-btn {
+    background: #7ed321;
+    border-radius: 4px;
+    padding: 0 5px;
+    font-size: 14px;
+}
 
-/* --- LOCATION --- */
+/* ===== LOCATION ===== */
 .location-panel {
     position: absolute;
     top: 240px;
@@ -124,25 +151,25 @@ body {
     margin-bottom: 10px;
 }
 
-.location-item { 
-    color: white; 
-    font-weight: 700; 
+.location-item {
+    color: white;
+    font-weight: 700;
     font-size: 16px;
-    margin-bottom: 6px; 
-    text-shadow: 1px 1px 3px black; 
+    margin-bottom: 6px;
+    text-shadow: 1px 1px 3px black;
 }
 
-/* --- CHARACTER --- */
+/* ===== CHARACTER ===== */
 .character {
     position: absolute;
     bottom: 100px;
-    left: 45%; /* Slightly off-center to make room for panels */
+    left: 45%;
     transform: translateX(-50%);
     height: 540px;
     z-index: 2;
 }
 
-/* --- INFO PANEL: REDUCED WIDTH TO PREVENT OVERLAP --- */
+/* ===== INFO PANEL ===== */
 .info-panel {
     position: absolute;
     top: 280px;
@@ -155,16 +182,59 @@ body {
     border: 1px solid rgba(255,255,255,0.1);
 }
 
-.info-header { background: #ff6ea9; text-align: center; color: white; font-size: 28px; font-weight: 800; }
-.info-sub { background: #a557ff; text-align: center; color: white; font-size: 11px; font-weight: 700; padding: 2px; }
-.info-content { padding: 10px; color: white; }
-.level { font-weight: 800; font-size: 16px; }
-.exp-text { font-size: 10px; text-align: right; margin-bottom: 2px; color: #ffbc2f; }
-.exp-bar { height: 8px; background: #444; border-radius: 5px; margin-bottom: 8px; }
-.exp-fill { width: 45%; height: 100%; background: #ffb52f; }
-.description { font-size: 12px; line-height: 1.2; }
+.info-header {
+    background: #ff6ea9;
+    text-align: center;
+    color: white;
+    font-size: 28px;
+    font-weight: 800;
+}
 
-/* --- ACTION BUTTONS: SCALED DOWN --- */
+.info-sub {
+    background: #a557ff;
+    text-align: center;
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px;
+}
+
+.info-content {
+    padding: 10px;
+    color: white;
+}
+
+.level {
+    font-weight: 800;
+    font-size: 16px;
+}
+
+.exp-text {
+    font-size: 10px;
+    text-align: right;
+    margin-bottom: 2px;
+    color: #ffbc2f;
+}
+
+.exp-bar {
+    height: 8px;
+    background: #444;
+    border-radius: 5px;
+    margin-bottom: 8px;
+}
+
+.exp-fill {
+    width: 45%;
+    height: 100%;
+    background: #ffb52f;
+}
+
+.description {
+    font-size: 12px;
+    line-height: 1.2;
+}
+
+/* ===== ACTION BUTTONS ===== */
 .actions {
     position: absolute;
     right: 10px;
@@ -191,10 +261,17 @@ body {
 .gold { background: radial-gradient(circle, #f5bc3e, #d9a120); }
 .green-btn { background: radial-gradient(circle, #7ed321, #57c028); }
 .blue-btn { background: radial-gradient(circle, #37c8ff, #2ea8ff); }
-.btn-label { font-size: 10px; font-weight: 800; }
-.icon { font-size: 20px; }
 
-/* --- JOYSTICK --- */
+.btn-label {
+    font-size: 10px;
+    font-weight: 800;
+}
+
+.icon {
+    font-size: 20px;
+}
+
+/* ===== JOYSTICK ===== */
 .joystick {
     position: absolute;
     left: 25px;
@@ -209,20 +286,28 @@ body {
 
 .joy-center {
     position: absolute;
-    top: 50%; left: 50%;
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
-    width: 55px; height: 55px;
-    background: #fff; border-radius: 50%;
+    width: 55px;
+    height: 55px;
+    background: #fff;
+    border-radius: 50%;
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
-.arrow { position: absolute; color: rgba(255,255,255,0.4); font-size: 16px; }
+.arrow {
+    position: absolute;
+    color: rgba(255,255,255,0.4);
+    font-size: 16px;
+}
+
 .up { top: 5px; left: 45%; }
 .down { bottom: 5px; left: 45%; }
 .left { left: 8px; top: 43%; }
 .right { right: 8px; top: 43%; }
 
-/* --- SKIN & BOTTOM NAV --- */
+/* ===== SKIN ===== */
 .current-skin {
     position: absolute;
     right: 15px;
@@ -234,18 +319,30 @@ body {
 }
 
 .skin-thumb {
-    width: 75px; height: 75px;
+    width: 75px;
+    height: 75px;
     border-radius: 50%;
     border: 4px solid #a557ff;
     box-shadow: 0 4px 10px rgba(0,0,0,0.5);
 }
 
-.skin-text span { color: white; font-size: 10px; font-weight: 800; }
-.skin-text h3 { color: #ffd44a; font-size: 16px; margin-top: -3px; }
+.skin-text span {
+    color: white;
+    font-size: 10px;
+    font-weight: 800;
+}
 
+.skin-text h3 {
+    color: #ffd44a;
+    font-size: 16px;
+    margin-top: -3px;
+}
+
+/* ===== BOTTOM MENU ===== */
 .bottom-menu {
     position: absolute;
-    bottom: 0; width: 100%;
+    bottom: 0;
+    width: 100%;
     height: 90px;
     background: #0a0f1c;
     display: flex;
@@ -255,48 +352,62 @@ body {
     z-index: 20;
 }
 
-.menu-item { color: white; text-align: center; font-size: 10px; font-weight: 700; }
-.menu-icon { font-size: 26px; }
+.menu-item {
+    color: white;
+    text-align: center;
+    font-size: 10px;
+    font-weight: 700;
+}
 
-/* --- Responsive tweaks for small screens to prevent overlap --- */
+.menu-icon {
+    font-size: 26px;
+}
+
+/* ===== RESPONSIVE ===== */
 @media (max-width: 420px), (max-height: 860px) {
+
     .game-container {
         border-radius: 22px;
     }
 
-    .header-section { top: 10px; left: 10px; }
-    .logo img { width: 95px; }
+    .logo img {
+        width: 95px;
+    }
 
     .status-panel {
-        top: 10px;
-        right: 8px;
-        width: 185px;
+        width: 200px;
         padding: 10px;
     }
 
-    .location-panel { top: 220px; left: 10px; }
-    .location-title { font-size: 14px; margin-bottom: 8px; }
+    .currency {
+        gap: 4px;
+    }
 
-    .currency { top: 140px; right: 10px; }
-    .money-box { width: 120px; font-size: 16px; }
+    .money-box {
+        width: 120px;
+        font-size: 14px;
+    }
 
-    .character { height: 420px; bottom: 115px; }
+    .character {
+        height: 420px;
+        bottom: 115px;
+    }
 
     .info-panel {
         top: 255px;
         right: 8px;
         width: 140px;
     }
-    .info-header { font-size: 24px; }
 
     .actions {
         right: 8px;
         bottom: 195px;
-        gap: 6px;
     }
-    .circle-btn { width: 66px; height: 66px; }
-    .btn-label { font-size: 9px; }
-    .icon { font-size: 18px; }
+
+    .circle-btn {
+        width: 66px;
+        height: 66px;
+    }
 
     .joystick {
         left: 12px;
@@ -304,12 +415,9 @@ body {
         width: 120px;
         height: 120px;
     }
-    .joy-center { width: 50px; height: 50px; }
 
-    .current-skin { right: 10px; bottom: 95px; }
-    .skin-thumb { width: 66px; height: 66px; }
-    .skin-text h3 { font-size: 14px; }
-
-    .bottom-menu { height: 82px; }
+    .joy-center {
+        width: 50px;
+        height: 50px;
+    }
 }
-
