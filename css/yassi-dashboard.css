@@ -21,11 +21,8 @@ body {
     width: 400px;
     height: 800px;
     background: url('../assets/Yassi-Background.png') center/cover no-repeat;
-    border-radius: 30px;
     overflow: hidden;
     box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-
-    /* Responsive scaling */
     max-width: 95vw;
     max-height: 95vh;
     width: 100%;
@@ -153,9 +150,10 @@ body {
     line-height: 1;
 }
 
-/* ===== INFO PANEL - FIXED TO TOP POSITION ===== */
+/* ===== INFO PANEL ===== */
 .info-panel {
     position: absolute;
+    pointer-events: none;
     top: clamp(120px, 16vh, 140px);
     right: clamp(5px, 1.5vw, 10px);
     width: clamp(130px, 32vw, 155px);
@@ -164,7 +162,7 @@ body {
     backdrop-filter: blur(15px);
     border-radius: 20px;
     overflow: hidden;
-    z-index: 5;
+    z-index: 35;
     border: 1px solid rgba(255,255,255,0.15);
     box-shadow: 0 10px 30px rgba(0,0,0,0.4);
 }
@@ -218,7 +216,7 @@ body {
     background: linear-gradient(90deg, #ffb52f, #ffdc6f);
     border-radius: 5px;
     transition: width 0.3s ease;
-    width: 45%; /* Matches 45/100 EXP */
+    width: 45%;
 }
 
 .description {
@@ -269,22 +267,67 @@ body {
     image-rendering: -webkit-optimize-contrast;
 }
 
-/* ===== ACTION BUTTONS - TRIANGLE LAYOUT (FIXED SPACING) ===== */
+/* ===== CURRENT SKIN (BOTTOM RIGHT, ABOVE ACTIONS LAYER) ===== */
+.current-skin {
+    position: absolute;
+    right: clamp(10px, 2vw, 15px);
+    bottom: clamp(90px, 12vh, 105px);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.skin-thumb {
+    width: clamp(60px, 15vw, 75px);
+    height: clamp(60px, 15vw, 75px);
+    border-radius: 50%;
+    border: 4px solid #a557ff;
+    box-shadow: 0 6px 20px rgba(165, 87, 255, 0.4);
+    image-rendering: -webkit-optimize-contrast;
+}
+
+.skin-text {
+    text-align: center;
+}
+
+.skin-text span {
+    color: white;
+    font-size: clamp(8px, 2vw, 10px);
+    font-weight: 800;
+    opacity: 0.9;
+}
+
+.skin-text h3 {
+    color: #ffd44a;
+    font-size: clamp(13px, 3.2vw, 16px);
+    margin: 0;
+    font-weight: 800;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+/* ===== ACTION BUTTONS (OVERLAY ABOVE CURRENT SKIN) ===== */
 .actions {
     position: absolute;
-    right: clamp(20px, 5vw, 30px);
-    bottom: clamp(230px, 29vh, 260px);
-    z-index: 15;
-    width: clamp(160px, 40vw, 190px);
-    height: clamp(160px, 40vw, 190px);
+    right: clamp(12px, 3vw, 20px);
+    /* Position buttons above the skin component */
+     top: 380px;
+    z-index: 60;
+    width: clamp(220px, 55vw, 280px);
+    height: auto;
     display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: clamp(8px, 2vw, 12px);
     pointer-events: none;
 }
 
 .circle-btn {
-    position: absolute;
-    width: clamp(60px, 16vw, 75px);
-    height: clamp(60px, 16vw, 75px);
+    position: relative;
+    width: clamp(55px, 14vw, 68px);
+    height: clamp(55px, 14vw, 68px);
     border-radius: 50%;
     border: 3px solid rgba(255,255,255,0.6);
     display: flex;
@@ -297,6 +340,7 @@ body {
     cursor: pointer;
     backdrop-filter: blur(10px);
     pointer-events: all;
+    flex-shrink: 0;
 }
 
 .circle-btn:hover,
@@ -305,6 +349,7 @@ body {
     box-shadow: 0 12px 30px rgba(0,0,0,0.5);
 }
 
+/* Button color variants */
 .gold { 
     background: radial-gradient(circle, #f5bc3e, #d9a120); 
     box-shadow: 0 8px 25px rgba(245, 188, 62, 0.4);
@@ -319,34 +364,15 @@ body {
 }
 
 .btn-label {
-    font-size: clamp(8px, 2vw, 10px);
+    font-size: clamp(7px, 1.8vw, 9px);
     font-weight: 800;
     line-height: 1;
     margin-top: 1px;
 }
 
 .icon {
-    font-size: clamp(18px, 4.5vw, 20px);
+    font-size: clamp(16px, 4vw, 18px);
     line-height: 1;
-}
-
-/* TRIANGLE POSITIONS - FIXED PERFECT SPACING */
-.top-btn {
-    top: 0;
-    right: 50%;
-    transform: translateX(50%);
-}
-
-.bottom-left-btn {
-    bottom: 0;
-    left: 10%;
-    transform: translateX(-10%);
-}
-
-.bottom-right-btn {
-    bottom: 0;
-    right: 10%;
-    transform: translateX(10%);
 }
 
 /* ===== JOYSTICK ===== */
@@ -390,46 +416,6 @@ body {
 .left { left: 10px; top: 50%; transform: translateY(-50%); }
 .right { right: 10px; top: 50%; transform: translateY(-50%); }
 
-/* ===== SKIN ===== */
-.current-skin {
-    position: absolute;
-    right: clamp(10px, 2vw, 15px);
-    bottom: clamp(90px, 12vh, 105px);
-    z-index: 10;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-}
-
-.skin-thumb {
-    width: clamp(60px, 15vw, 75px);
-    height: clamp(60px, 15vw, 75px);
-    border-radius: 50%;
-    border: 4px solid #a557ff;
-    box-shadow: 0 6px 20px rgba(165, 87, 255, 0.4);
-    image-rendering: -webkit-optimize-contrast;
-}
-
-.skin-text {
-    text-align: center;
-}
-
-.skin-text span {
-    color: white;
-    font-size: clamp(8px, 2vw, 10px);
-    font-weight: 800;
-    opacity: 0.9;
-}
-
-.skin-text h3 {
-    color: #ffd44a;
-    font-size: clamp(13px, 3.2vw, 16px);
-    margin: 0;
-    font-weight: 800;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
-}
-
 /* ===== BOTTOM MENU ===== */
 .bottom-menu {
     position: absolute;
@@ -471,14 +457,22 @@ body {
     line-height: 1;
 }
 
-/* ===== ULTRA MOBILE OPTIMIZATION ===== */
+.menu-icon-img {
+    width: clamp(24px, 6vw, 28px);
+    height: clamp(24px, 6vw, 28px);
+    object-fit: contain;
+    display: block;
+    filter: drop-shadow(0 2px 3px rgba(0,0,0,0.35));
+    margin-top: -2px;
+}
+
+
+/* ===== RESPONSIVE ADJUSTMENTS ===== */
+/* Medium screens & tablets */
 @media (max-width: 480px) and (max-height: 900px) {
-    body {
-        padding: 2px;
-    }
+    body { padding: 2px; }
     
     .game-container {
-        border-radius: 25px;
         max-height: 94vh;
     }
     
@@ -487,11 +481,8 @@ body {
         gap: 8px;
     }
     
-    .status-panel {
-        padding: 8px 10px;
-    }
+    .status-panel { padding: 8px 10px; }
     
-    /* INFO PANEL - MOBILE FIXED POSITION */
     .info-panel {
         top: clamp(115px, 15vh, 130px);
         right: clamp(4px, 1.2vw, 8px);
@@ -508,22 +499,18 @@ body {
         bottom: clamp(165px, 22vh, 185px);
     }
     
-    /* TRIANGLE BUTTONS MOBILE - FIXED SPACING */
+    /* Keep actions elevated above current-skin */
     .actions {
-        right: clamp(12px, 3.5vw, 22px);
-        bottom: clamp(215px, 27vh, 245px);
-        width: clamp(150px, 38vw, 175px);
-        height: clamp(150px, 38vw, 175px);
+        right: clamp(8px, 2.5vw, 15px);
+        bottom: calc(clamp(85px, 11vh, 95px) + clamp(62px, 15vw, 78px));
+        width: clamp(200px, 50vw, 240px);
+        gap: clamp(6px, 1.5vw, 10px);
+        align-items: center;
     }
     
-    .bottom-left-btn {
-        left: 8%;
-        transform: translateX(-8%);
-    }
-    
-    .bottom-right-btn {
-        right: 8%;
-        transform: translateX(8%);
+    .circle-btn {
+        width: clamp(50px, 13vw, 62px);
+        height: clamp(50px, 13vw, 62px);
     }
     
     .location-panel {
@@ -532,65 +519,53 @@ body {
     }
 }
 
+/* Short screens (height-constrained) */
 @media (max-height: 700px) {
-    .info-panel {
-        top: clamp(105px, 14vh, 120px);
-    }
+    .info-panel { top: clamp(105px, 14vh, 120px); }
     
     .character {
         height: clamp(320px, 48vh, 450px);
         bottom: clamp(75px, 10vh, 90px);
     }
     
+    /* Adjust action buttons for shorter view */
     .actions {
-        bottom: clamp(200px, 26vh, 230px);
-        width: clamp(155px, 39vw, 185px);
-        height: clamp(155px, 39vw, 185px);
+       top: 290px;
+        bottom: calc(clamp(75px, 10vh, 90px) + clamp(58px, 14vw, 72px));
+        width: clamp(210px, 52vw, 260px);
+        align-items: center;
     }
     
-    .joystick {
-        bottom: clamp(150px, 20vh, 175px);
-    }
+    .joystick { bottom: clamp(150px, 20vh, 175px); }
     
     .current-skin {
         bottom: clamp(75px, 10vh, 95px);
         right: clamp(8px, 2vw, 12px);
     }
     
-    .location-panel {
-        top: clamp(190px, 25vh, 220px);
-    }
+    .location-panel { top: clamp(190px, 25vh, 220px); }
 }
 
-/* Landscape orientation */
+/* Landscape orientation on small heights */
 @media (max-height: 500px) and (orientation: landscape) {
     .game-container {
         max-height: 98vh;
         border-radius: 20px;
     }
     
-    .info-panel {
-        top: clamp(95px, 13vh, 110px);
-    }
+    .info-panel { top: clamp(95px, 13vh, 110px); }
     
-    .character {
-        height: clamp(250px, 45vh, 350px);
-    }
+    .character { height: clamp(250px, 45vh, 350px); }
     
-    .top-ui {
-        top: 5px;
-        left: 8px;
-        right: 8px;
-    }
+    .top-ui { top: 5px; left: 8px; right: 8px; }
     
-    .bottom-menu {
-        height: clamp(60px, 12vh, 75px);
-    }
+    .bottom-menu { height: clamp(60px, 12vh, 75px); }
     
+    /* Fine-tuned landscape positioning — buttons clearly above skin */
     .actions {
-        width: clamp(130px, 34vw, 160px);
-        height: clamp(130px, 34vw, 160px);
-        bottom: clamp(180px, 36vh, 210px);
-        right: clamp(15px, 4vw, 25px);
+        bottom: calc(clamp(105px, 14vh, 120px) + clamp(55px, 12vw, 65px));
+        width: clamp(190px, 48vw, 230px);
+        gap: clamp(7px, 1.8vw, 10px);
+        align-items: center;
     }
 }
