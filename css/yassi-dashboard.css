@@ -456,10 +456,7 @@ body {
         height: 380px;
     }
     
-    .joystick {
-        left: 8px;
-        bottom: 165px;
-    }
+
     
     .actions {
         right: 8px;
@@ -496,7 +493,7 @@ body {
         align-items: center;
     }
     
-    .joystick { bottom: 150px; }
+
     
     .current-skin {
         bottom: 75px;
