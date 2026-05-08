@@ -20,28 +20,9 @@
         <button class="welcome-dismiss" id="welcomeDismiss" type="button" aria-label="Dismiss welcome">
             <img src="./assets/welcome to yassi.png" alt="Welcome to Yassi" />
         </button>
-
-
     </div>
 
-    <script>
-
-        (function () {
-            var overlay = document.getElementById('welcomeOverlay');
-            var btn = document.getElementById('welcomeDismiss');
-            if (!overlay) return;
-
-            function hide() {
-                overlay.classList.add('is-hidden');
-                overlay.setAttribute('aria-hidden', 'true');
-            }
-
-            if (btn) btn.addEventListener('click', hide);
-        })();
-    </script>
-
     <!-- TOP UI FIXED ROW -->
-
     <div class="top-ui">
         <!-- LOGO LEFT -->
         <div class="header-section">
@@ -123,8 +104,6 @@
         </div>
     </div>
 
-
-
     <!-- BOTTOM MENU -->
     <div class="bottom-menu">
         <div class="menu-item"><img class="menu-icon-img" src="./assets/buttom-menu/inventory.png" alt="Inventory" title="Inventory">INVENTORY</div>
@@ -135,7 +114,6 @@
     </div>
 </div>
 
+<script src="js/app.js"></script>
 </body>
-
 </html>
-
