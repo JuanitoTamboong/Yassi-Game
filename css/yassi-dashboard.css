@@ -422,7 +422,6 @@ body {
     bottom: 0;
     width: 100%;
     height: clamp(75px, 11vh, 90px);
-    background: rgba(10, 15, 28, 0.98);
     backdrop-filter: blur(20px);
     display: flex;
     justify-content: space-around;
