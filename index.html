@@ -47,10 +47,28 @@
             </div>
         </div>
 
-        <!-- CURRENCY RIGHT -->
+        <!-- CURRENCY RIGHT - BULLETPROOF COIN FIX -->
         <div class="currency">
-            <div class="money-box">🪙 120 <span class="plus-btn">+</span></div>
-            <div class="money-box">💵 20.00</div>
+            <div class="money-box">
+                <div class="coin-container">
+                    <svg class="coin-svg" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="11" stroke="#f5bc3e" stroke-width="2" fill="#ffd700"/>
+                        <circle cx="12" cy="12" r="8" fill="#ffed4e"/>
+                        <text x="12" y="16" text-anchor="middle" font-size="12" font-weight="bold" fill="#d4a017">🪙</text>
+                    </svg>
+                </div>
+                <span class="coin-amount">120</span>
+                <span class="plus-btn">+</span>
+            </div>
+            <div class="money-box">
+                <div class="dollar-container">
+                    <svg class="dollar-svg" viewBox="0 0 24 24" fill="none">
+                        <rect x="4" y="5" width="16" height="14" rx="3" stroke="#37c8ff" stroke-width="2" fill="#2ea8ff"/>
+                        <text x="12" y="16" text-anchor="middle" font-size="12" font-weight="bold" fill="#003b73">$</text>
+                    </svg>
+                </div>
+                <span class="dollar-amount">20.00</span>
+            </div>
         </div>
     </div>
 
@@ -79,7 +97,7 @@
     <!-- CHARACTER -->
     <img src="./assets/Yassi Avatar.png" class="character">
 
-    <!-- SKIN - MOVED BEFORE ACTIONS (CRITICAL FIX) -->
+    <!-- SKIN -->
     <div class="current-skin">
         <img src="./assets/avatar.png" class="skin-thumb">
         <div class="skin-text">
@@ -88,7 +106,7 @@
         </div>
     </div>
 
-    <!-- ACTION BUTTONS - NOW AFTER SKIN (ON TOP) -->
+    <!-- ACTION BUTTONS -->
     <div class="actions">
         <div class="circle-btn gold top-btn">
             <span class="icon">✋</span>
@@ -106,11 +124,11 @@
 
     <!-- BOTTOM MENU -->
     <div class="bottom-menu">
-        <div class="menu-item"><img class="menu-icon-img" src="./assets/buttom-menu/inventory.png" alt="Inventory" title="Inventory">INVENTORY</div>
-        <div class="menu-item"><img class="menu-icon-img" src="./assets/buttom-menu/quests.png" alt="Quests icon">QUESTS</div>
-        <div class="menu-item"><img class="menu-icon-img" src="./assets/buttom-menu/values.png" alt="Values icon">VALUES</div>
-        <div class="menu-item"><img class="menu-icon-img" src="./assets/buttom-menu/cookbook.png" alt="Cookbook icon">COOKBOOK</div>
-        <div class="menu-item"><img class="menu-icon-img" src="./assets/buttom-menu/settings.png" alt="Settings icon">MENU</div>
+        <div class="menu-item"><img class="menu-icon-img" src="./assets/buttom-menu/inventory.png" alt="Inventory">INVENTORY</div>
+        <div class="menu-item"><img class="menu-icon-img" src="./assets/buttom-menu/quests.png" alt="Quests">QUESTS</div>
+        <div class="menu-item"><img class="menu-icon-img" src="./assets/buttom-menu/values.png" alt="Values">VALUES</div>
+        <div class="menu-item"><img class="menu-icon-img" src="./assets/buttom-menu/cookbook.png" alt="Cookbook">COOKBOOK</div>
+        <div class="menu-item"><img class="menu-icon-img" src="./assets/buttom-menu/settings.png" alt="Menu">MENU</div>
     </div>
 </div>
 
