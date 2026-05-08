@@ -9,8 +9,10 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     background: #0a0f1c;
+    padding: 5px;
+    overflow-x: hidden;
 }
 
 /* ===== GAME CONTAINER ===== */
@@ -21,6 +23,14 @@ body {
     background: url('../assets/Yassi-Background.png') center/cover no-repeat;
     border-radius: 30px;
     overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+
+    /* Responsive scaling */
+    max-width: 95vw;
+    max-height: 95vh;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1 / 2;
 }
 
 /* ===== OVERLAY ===== */
@@ -31,22 +41,20 @@ body {
     z-index: 1;
 }
 
-/* =========================
-   🔥 TOP UI FIX (IMPORTANT)
-========================= */
+/* ===== TOP UI ===== */
 .top-ui {
     position: absolute;
-    top: 15px;
-    left: 15px;
-    right: 15px;
+    top: clamp(10px, 2vw, 15px);
+    left: clamp(10px, 2vw, 15px);
+    right: clamp(10px, 2vw, 15px);
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    gap: 10px;
+    gap: clamp(5px, 1.5vw, 10px);
     z-index: 20;
+    padding-top: clamp(5px, 1vw, 10px);
 }
 
-/* reset old positioning */
 .header-section,
 .status-panel,
 .currency {
@@ -57,27 +65,33 @@ body {
 .header-section {
     display: flex;
     flex-direction: column;
+    flex-shrink: 0;
 }
 
 .logo img {
-    width: 110px;
+    width: clamp(90px, 22vw, 110px);
+    height: auto;
+    max-height: 80px;
 }
 
 /* ===== STATUS (CENTER) ===== */
 .status-panel {
-    width: 320px;
-    background: rgba(16, 22, 35, 0.85);
+    width: clamp(200px, 70vw, 320px);
+    background: rgba(16, 22, 35, 0.9);
+    backdrop-filter: blur(10px);
     border-radius: 18px;
-    padding: 10px 14px;
+    padding: clamp(8px, 2vw, 12px) clamp(10px, 2vw, 14px);
     color: white;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    flex: 1;
+    max-width: 320px;
 }
 
 .bar {
     display: flex;
     flex-direction: column;
-    gap: 3px;
-    margin-bottom: 8px;
+    gap: clamp(2px, 0.5vw, 3px);
+    margin-bottom: clamp(5px, 1vw, 8px);
 }
 
 .bar:last-child {
@@ -85,13 +99,13 @@ body {
 }
 
 .bar-title {
-    font-size: 13px;
+    font-size: clamp(11px, 2.5vw, 13px);
     font-weight: 800;
     letter-spacing: 0.2px;
 }
 
 .progress {
-    height: 10px;
+    height: clamp(8px, 2vw, 10px);
     background: #333;
     border-radius: 10px;
     overflow: hidden;
@@ -100,6 +114,7 @@ body {
 .fill {
     height: 100%;
     border-radius: 10px;
+    transition: width 0.3s ease;
 }
 
 .green { background: #7ed321; }
@@ -110,178 +125,243 @@ body {
 .currency {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: clamp(4px, 1vw, 6px);
+    flex-shrink: 0;
 }
 
 .money-box {
-    background: rgba(0,0,0,0.85);
+    background: rgba(0,0,0,0.9);
+    backdrop-filter: blur(10px);
     color: white;
-    padding: 5px 12px;
+    padding: clamp(4px, 1vw, 6px) clamp(8px, 2vw, 12px);
     border-radius: 12px;
     font-weight: 800;
-    font-size: 16px;
-    width: 125px;
+    font-size: clamp(13px, 3vw, 16px);
+    width: clamp(105px, 28vw, 125px);
     display: flex;
     justify-content: space-between;
     align-items: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
 .plus-btn {
     background: #7ed321;
     border-radius: 4px;
-    padding: 0 5px;
-    font-size: 14px;
-}
-
-/* ===== LOCATION ===== */
-.location-panel {
-    position: absolute;
-    top: 240px;
-    left: 15px;
-    z-index: 10;
-}
-
-.location-title {
-    background: #8e38ea;
-    color: white;
-    padding: 4px 12px;
-    border-radius: 10px;
-    font-weight: 800;
-    font-size: 16px;
-    margin-bottom: 10px;
-}
-
-.location-item {
-    color: white;
+    padding: 0 clamp(3px, 0.8vw, 5px);
+    font-size: clamp(12px, 2.5vw, 14px);
     font-weight: 700;
-    font-size: 16px;
-    margin-bottom: 6px;
-    text-shadow: 1px 1px 3px black;
+    line-height: 1;
 }
 
-/* ===== CHARACTER ===== */
-.character {
-    position: absolute;
-    bottom: 100px;
-    left: 45%;
-    transform: translateX(-50%);
-    height: 540px;
-    z-index: 2;
-}
-
-/* ===== INFO PANEL ===== */
+/* ===== INFO PANEL - FIXED TO TOP POSITION ===== */
 .info-panel {
     position: absolute;
-    top: 280px;
-    right: 10px;
-    width: 155px;
-    background: rgba(15, 20, 35, 0.9);
+    top: clamp(120px, 16vh, 140px);
+    right: clamp(5px, 1.5vw, 10px);
+    width: clamp(130px, 32vw, 155px);
+    max-width: 160px;
+    background: rgba(15, 20, 35, 0.95);
+    backdrop-filter: blur(15px);
     border-radius: 20px;
     overflow: hidden;
     z-index: 5;
-    border: 1px solid rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.15);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
 }
 
 .info-header {
-    background: #ff6ea9;
+    background: linear-gradient(135deg, #ff6ea9, #ff8db8);
     text-align: center;
     color: white;
-    font-size: 28px;
+    font-size: clamp(22px, 6vw, 28px);
     font-weight: 800;
+    padding: clamp(6px, 1.5vw, 8px) 0;
 }
 
 .info-sub {
-    background: #a557ff;
+    background: linear-gradient(135deg, #a557ff, #c47aff);
     text-align: center;
     color: white;
-    font-size: 11px;
+    font-size: clamp(10px, 2.2vw, 11px);
     font-weight: 700;
-    padding: 2px;
+    padding: clamp(2px, 0.5vw, 3px) 0;
 }
 
 .info-content {
-    padding: 10px;
+    padding: clamp(8px, 2vw, 10px);
     color: white;
 }
 
 .level {
     font-weight: 800;
-    font-size: 16px;
+    font-size: clamp(14px, 3.5vw, 16px);
+    margin-bottom: 2px;
 }
 
 .exp-text {
-    font-size: 10px;
+    font-size: clamp(9px, 2vw, 10px);
     text-align: right;
     margin-bottom: 2px;
     color: #ffbc2f;
 }
 
 .exp-bar {
-    height: 8px;
+    height: clamp(6px, 1.5vw, 8px);
     background: #444;
     border-radius: 5px;
-    margin-bottom: 8px;
+    margin-bottom: clamp(6px, 1.5vw, 8px);
+    overflow: hidden;
 }
 
 .exp-fill {
-    width: 45%;
     height: 100%;
-    background: #ffb52f;
+    background: linear-gradient(90deg, #ffb52f, #ffdc6f);
+    border-radius: 5px;
+    transition: width 0.3s ease;
+    width: 45%; /* Matches 45/100 EXP */
 }
 
 .description {
-    font-size: 12px;
+    font-size: clamp(10px, 2.2vw, 12px);
+    line-height: 1.3;
+    margin: 0;
+}
+
+/* ===== LOCATION ===== */
+.location-panel {
+    position: absolute;
+    top: clamp(220px, 28vh, 240px);
+    left: clamp(10px, 2vw, 15px);
+    z-index: 10;
+    max-width: 160px;
+}
+
+.location-title {
+    background: linear-gradient(135deg, #8e38ea, #a557ff);
+    color: white;
+    padding: clamp(4px, 1vw, 6px) 12px;
+    border-radius: 10px;
+    font-weight: 800;
+    font-size: clamp(14px, 3vw, 16px);
+    margin-bottom: 10px;
+    box-shadow: 0 4px 12px rgba(142, 56, 234, 0.4);
+}
+
+.location-item {
+    color: white;
+    font-weight: 700;
+    font-size: clamp(14px, 3vw, 16px);
+    margin-bottom: 6px;
+    text-shadow: 1px 1px 3px black;
     line-height: 1.2;
 }
 
-/* ===== ACTION BUTTONS ===== */
+/* ===== CHARACTER ===== */
+.character {
+    position: absolute;
+    bottom: clamp(90px, 12vh, 100px);
+    left: 50%;
+    transform: translateX(-50%);
+    height: clamp(400px, 55vh, 540px);
+    max-height: 60vh;
+    width: auto;
+    z-index: 2;
+    image-rendering: -webkit-optimize-contrast;
+}
+
+/* ===== ACTION BUTTONS - TRIANGLE LAYOUT (FIXED SPACING) ===== */
 .actions {
     position: absolute;
-    right: 10px;
-    bottom: 215px;
+    right: clamp(20px, 5vw, 30px);
+    bottom: clamp(230px, 29vh, 260px);
     z-index: 15;
+    width: clamp(160px, 40vw, 190px);
+    height: clamp(160px, 40vw, 190px);
     display: flex;
-    flex-direction: column;
-    gap: 8px;
+    pointer-events: none;
 }
 
 .circle-btn {
-    width: 75px;
-    height: 75px;
+    position: absolute;
+    width: clamp(60px, 16vw, 75px);
+    height: clamp(60px, 16vw, 75px);
     border-radius: 50%;
-    border: 4px solid rgba(255,255,255,0.5);
+    border: 3px solid rgba(255,255,255,0.6);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     color: white;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+    transition: all 0.2s ease;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    pointer-events: all;
 }
 
-.gold { background: radial-gradient(circle, #f5bc3e, #d9a120); }
-.green-btn { background: radial-gradient(circle, #7ed321, #57c028); }
-.blue-btn { background: radial-gradient(circle, #37c8ff, #2ea8ff); }
+.circle-btn:hover,
+.circle-btn:active {
+    transform: scale(0.95);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+}
+
+.gold { 
+    background: radial-gradient(circle, #f5bc3e, #d9a120); 
+    box-shadow: 0 8px 25px rgba(245, 188, 62, 0.4);
+}
+.green-btn { 
+    background: radial-gradient(circle, #7ed321, #57c028); 
+    box-shadow: 0 8px 25px rgba(126, 211, 33, 0.4);
+}
+.blue-btn { 
+    background: radial-gradient(circle, #37c8ff, #2ea8ff); 
+    box-shadow: 0 8px 25px rgba(55, 200, 255, 0.4);
+}
 
 .btn-label {
-    font-size: 10px;
+    font-size: clamp(8px, 2vw, 10px);
     font-weight: 800;
+    line-height: 1;
+    margin-top: 1px;
 }
 
 .icon {
-    font-size: 20px;
+    font-size: clamp(18px, 4.5vw, 20px);
+    line-height: 1;
+}
+
+/* TRIANGLE POSITIONS - FIXED PERFECT SPACING */
+.top-btn {
+    top: 0;
+    right: 50%;
+    transform: translateX(50%);
+}
+
+.bottom-left-btn {
+    bottom: 0;
+    left: 10%;
+    transform: translateX(-10%);
+}
+
+.bottom-right-btn {
+    bottom: 0;
+    right: 10%;
+    transform: translateX(10%);
 }
 
 /* ===== JOYSTICK ===== */
 .joystick {
     position: absolute;
-    left: 25px;
-    bottom: 195px;
-    width: 140px;
-    height: 140px;
-    background: rgba(255,255,255,0.1);
-    border: 2px solid rgba(255,255,255,0.3);
+    left: clamp(10px, 3vw, 25px);
+    bottom: clamp(170px, 23vh, 195px);
+    width: clamp(110px, 28vw, 140px);
+    height: clamp(110px, 28vw, 140px);
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(15px);
+    border: 2px solid rgba(255,255,255,0.4);
     border-radius: 50%;
     z-index: 10;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
 }
 
 .joy-center {
@@ -289,53 +369,65 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 55px;
-    height: 55px;
-    background: #fff;
+    width: clamp(42px, 11vw, 55px);
+    height: clamp(42px, 11vw, 55px);
+    background: rgba(255,255,255,0.95);
     border-radius: 50%;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+    transition: all 0.2s ease;
 }
 
 .arrow {
     position: absolute;
-    color: rgba(255,255,255,0.4);
-    font-size: 16px;
+    color: rgba(255,255,255,0.5);
+    font-size: clamp(14px, 3.5vw, 16px);
+    font-weight: bold;
+    transition: color 0.2s ease;
 }
 
-.up { top: 5px; left: 45%; }
-.down { bottom: 5px; left: 45%; }
-.left { left: 8px; top: 43%; }
-.right { right: 8px; top: 43%; }
+.up { top: 8px; left: 50%; transform: translateX(-50%); }
+.down { bottom: 8px; left: 50%; transform: translateX(-50%); }
+.left { left: 10px; top: 50%; transform: translateY(-50%); }
+.right { right: 10px; top: 50%; transform: translateY(-50%); }
 
 /* ===== SKIN ===== */
 .current-skin {
     position: absolute;
-    right: 15px;
-    bottom: 105px;
+    right: clamp(10px, 2vw, 15px);
+    bottom: clamp(90px, 12vh, 105px);
     z-index: 10;
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 4px;
 }
 
 .skin-thumb {
-    width: 75px;
-    height: 75px;
+    width: clamp(60px, 15vw, 75px);
+    height: clamp(60px, 15vw, 75px);
     border-radius: 50%;
     border: 4px solid #a557ff;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    box-shadow: 0 6px 20px rgba(165, 87, 255, 0.4);
+    image-rendering: -webkit-optimize-contrast;
+}
+
+.skin-text {
+    text-align: center;
 }
 
 .skin-text span {
     color: white;
-    font-size: 10px;
+    font-size: clamp(8px, 2vw, 10px);
     font-weight: 800;
+    opacity: 0.9;
 }
 
 .skin-text h3 {
     color: #ffd44a;
-    font-size: 16px;
-    margin-top: -3px;
+    font-size: clamp(13px, 3.2vw, 16px);
+    margin: 0;
+    font-weight: 800;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
 }
 
 /* ===== BOTTOM MENU ===== */
@@ -343,81 +435,162 @@ body {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 90px;
-    background: #0a0f1c;
+    height: clamp(75px, 11vh, 90px);
+    background: rgba(10, 15, 28, 0.98);
+    backdrop-filter: blur(20px);
     display: flex;
     justify-content: space-around;
     align-items: center;
-    border-top: 2px solid rgba(255,255,255,0.1);
+    border-top: 2px solid rgba(255,255,255,0.15);
     z-index: 20;
+    padding: 0 10px;
+    box-shadow: 0 -5px 20px rgba(0,0,0,0.3);
 }
 
 .menu-item {
     color: white;
     text-align: center;
-    font-size: 10px;
+    font-size: clamp(9px, 2.2vw, 10px);
     font-weight: 700;
+    flex: 1;
+    padding: 0 5px;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+
+.menu-item:hover {
+    color: #ffd44a;
 }
 
 .menu-icon {
-    font-size: 26px;
+    font-size: clamp(22px, 6vw, 26px);
+    line-height: 1;
 }
 
-/* ===== RESPONSIVE ===== */
-@media (max-width: 420px), (max-height: 860px) {
-
+/* ===== ULTRA MOBILE OPTIMIZATION ===== */
+@media (max-width: 480px) and (max-height: 900px) {
+    body {
+        padding: 2px;
+    }
+    
     .game-container {
-        border-radius: 22px;
+        border-radius: 25px;
+        max-height: 94vh;
     }
-
-    .logo img {
-        width: 95px;
+    
+    .top-ui {
+        padding-top: 8px;
+        gap: 8px;
     }
-
+    
     .status-panel {
-        width: 200px;
-        padding: 10px;
+        padding: 8px 10px;
     }
-
-    .currency {
-        gap: 4px;
-    }
-
-    .money-box {
-        width: 120px;
-        font-size: 14px;
-    }
-
-    .character {
-        height: 420px;
-        bottom: 115px;
-    }
-
+    
+    /* INFO PANEL - MOBILE FIXED POSITION */
     .info-panel {
-        top: 255px;
-        right: 8px;
-        width: 140px;
+        top: clamp(115px, 15vh, 130px);
+        right: clamp(4px, 1.2vw, 8px);
+        width: clamp(125px, 30vw, 150px);
     }
-
-    .actions {
-        right: 8px;
-        bottom: 195px;
+    
+    .character {
+        bottom: clamp(85px, 11vh, 95px);
+        height: clamp(380px, 52vh, 520px);
     }
-
-    .circle-btn {
-        width: 66px;
-        height: 66px;
-    }
-
+    
     .joystick {
-        left: 12px;
-        bottom: 180px;
-        width: 120px;
-        height: 120px;
+        left: clamp(8px, 2.5vw, 20px);
+        bottom: clamp(165px, 22vh, 185px);
     }
+    
+    /* TRIANGLE BUTTONS MOBILE - FIXED SPACING */
+    .actions {
+        right: clamp(12px, 3.5vw, 22px);
+        bottom: clamp(215px, 27vh, 245px);
+        width: clamp(150px, 38vw, 175px);
+        height: clamp(150px, 38vw, 175px);
+    }
+    
+    .bottom-left-btn {
+        left: 8%;
+        transform: translateX(-8%);
+    }
+    
+    .bottom-right-btn {
+        right: 8%;
+        transform: translateX(8%);
+    }
+    
+    .location-panel {
+        top: clamp(210px, 27vh, 230px);
+        max-width: 150px;
+    }
+}
 
-    .joy-center {
-        width: 50px;
-        height: 50px;
+@media (max-height: 700px) {
+    .info-panel {
+        top: clamp(105px, 14vh, 120px);
+    }
+    
+    .character {
+        height: clamp(320px, 48vh, 450px);
+        bottom: clamp(75px, 10vh, 90px);
+    }
+    
+    .actions {
+        bottom: clamp(200px, 26vh, 230px);
+        width: clamp(155px, 39vw, 185px);
+        height: clamp(155px, 39vw, 185px);
+    }
+    
+    .joystick {
+        bottom: clamp(150px, 20vh, 175px);
+    }
+    
+    .current-skin {
+        bottom: clamp(75px, 10vh, 95px);
+        right: clamp(8px, 2vw, 12px);
+    }
+    
+    .location-panel {
+        top: clamp(190px, 25vh, 220px);
+    }
+}
+
+/* Landscape orientation */
+@media (max-height: 500px) and (orientation: landscape) {
+    .game-container {
+        max-height: 98vh;
+        border-radius: 20px;
+    }
+    
+    .info-panel {
+        top: clamp(95px, 13vh, 110px);
+    }
+    
+    .character {
+        height: clamp(250px, 45vh, 350px);
+    }
+    
+    .top-ui {
+        top: 5px;
+        left: 8px;
+        right: 8px;
+    }
+    
+    .bottom-menu {
+        height: clamp(60px, 12vh, 75px);
+    }
+    
+    .actions {
+        width: clamp(130px, 34vw, 160px);
+        height: clamp(130px, 34vw, 160px);
+        bottom: clamp(180px, 36vh, 210px);
+        right: clamp(15px, 4vw, 25px);
     }
 }
