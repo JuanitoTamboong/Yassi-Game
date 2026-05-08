@@ -325,6 +325,7 @@ body {
 
 .circle-btn {
     position: relative;
+
     width: 55px;
     height: 55px;
     border-radius: 50%;
@@ -374,46 +375,7 @@ body {
     line-height: 1;
 }
 
-/* ===== JOYSTICK ===== */
-.joystick {
-    position: absolute;
-    left: 10px;
-    bottom: 170px;
-    width: 110px;
-    height: 110px;
-    background: rgba(255,255,255,0.12);
-    backdrop-filter: blur(15px);
-    border: 2px solid rgba(255,255,255,0.4);
-    border-radius: 50%;
-    z-index: 10;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-}
 
-.joy-center {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 42px;
-    height: 42px;
-    background: rgba(255,255,255,0.95);
-    border-radius: 50%;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-    transition: all 0.2s ease;
-}
-
-.arrow {
-    position: absolute;
-    color: rgba(255,255,255,0.5);
-    font-size: 14px;
-    font-weight: bold;
-    transition: color 0.2s ease;
-}
-
-.up { top: 8px; left: 50%; transform: translateX(-50%); }
-.down { bottom: 8px; left: 50%; transform: translateX(-50%); }
-.left { left: 10px; top: 50%; transform: translateY(-50%); }
-.right { right: 10px; top: 50%; transform: translateY(-50%); }
 
 /* ===== BOTTOM MENU ===== */
 .bottom-menu {
