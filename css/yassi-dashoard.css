@@ -1,0 +1,315 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Baloo 2', cursive;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #0a0f1c;
+}
+
+.game-container {
+    position: relative;
+    width: min(420px, 100vw - 24px);
+    height: min(860px, 100vh - 24px);
+    overflow: hidden;
+    border-radius: 30px;
+    /* CSS file is in /css, so assets live in /assets */
+    background: url('../assets/Yassi-Background.png') center/cover no-repeat;
+    border: 6px solid #1a1a1a;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.1), transparent, rgba(0,0,0,0.3));
+    z-index: 1;
+}
+
+/* --- HEADER & TAGLINE --- */
+.header-section {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    z-index: 10;
+}
+
+.logo img { width: 110px; }
+
+.tagline {
+    background: #1aa9ff;
+    color: white;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 12px;
+    border: 2px solid #fff;
+    margin-top: -5px;
+    box-shadow: 0 4px 0 #0077c2;
+}
+
+/* --- STATUS PANEL --- */
+.status-panel {
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    width:10px;
+    background: rgba(16, 22, 35, 0.9);
+    border-radius: 18px;
+    padding: 12px;
+    color: white;
+    z-index: 10;
+}
+
+
+.bar-title { font-size: 13px; font-weight: 800; margin-bottom: 3px; }
+.progress { height: 10px; background: #333; border-radius: 10px; overflow: hidden; margin-bottom: 6px; }
+.fill { height: 100%; border-radius: 10px; }
+.green { background: #7ed321; }
+.blue { background: #37c8ff; }
+.yellow { background: #ffbc2f; }
+
+/* --- CURRENCY --- */
+.currency {
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    left: auto;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+
+.money-box {
+    background: rgba(0,0,0,0.85);
+    color: white;
+    padding: 5px 12px;
+    border-radius: 12px;
+    font-weight: 800;
+    font-size: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 125px;
+}
+
+.plus-btn { background: #7ed321; border-radius: 4px; padding: 0 5px; font-size: 14px; }
+
+/* --- LOCATION --- */
+.location-panel {
+    position: absolute;
+    top: 240px;
+    left: 15px;
+    z-index: 10;
+}
+
+.location-title {
+    background: #8e38ea;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 10px;
+    font-weight: 800;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.location-item { 
+    color: white; 
+    font-weight: 700; 
+    font-size: 16px;
+    margin-bottom: 6px; 
+    text-shadow: 1px 1px 3px black; 
+}
+
+/* --- CHARACTER --- */
+.character {
+    position: absolute;
+    bottom: 100px;
+    left: 45%; /* Slightly off-center to make room for panels */
+    transform: translateX(-50%);
+    height: 540px;
+    z-index: 2;
+}
+
+/* --- INFO PANEL: REDUCED WIDTH TO PREVENT OVERLAP --- */
+.info-panel {
+    position: absolute;
+    top: 280px;
+    right: 10px;
+    width: 155px;
+    background: rgba(15, 20, 35, 0.9);
+    border-radius: 20px;
+    overflow: hidden;
+    z-index: 5;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.info-header { background: #ff6ea9; text-align: center; color: white; font-size: 28px; font-weight: 800; }
+.info-sub { background: #a557ff; text-align: center; color: white; font-size: 11px; font-weight: 700; padding: 2px; }
+.info-content { padding: 10px; color: white; }
+.level { font-weight: 800; font-size: 16px; }
+.exp-text { font-size: 10px; text-align: right; margin-bottom: 2px; color: #ffbc2f; }
+.exp-bar { height: 8px; background: #444; border-radius: 5px; margin-bottom: 8px; }
+.exp-fill { width: 45%; height: 100%; background: #ffb52f; }
+.description { font-size: 12px; line-height: 1.2; }
+
+/* --- ACTION BUTTONS: SCALED DOWN --- */
+.actions {
+    position: absolute;
+    right: 10px;
+    bottom: 215px;
+    z-index: 15;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.circle-btn {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    border: 4px solid rgba(255,255,255,0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+}
+
+.gold { background: radial-gradient(circle, #f5bc3e, #d9a120); }
+.green-btn { background: radial-gradient(circle, #7ed321, #57c028); }
+.blue-btn { background: radial-gradient(circle, #37c8ff, #2ea8ff); }
+.btn-label { font-size: 10px; font-weight: 800; }
+.icon { font-size: 20px; }
+
+/* --- JOYSTICK --- */
+.joystick {
+    position: absolute;
+    left: 25px;
+    bottom: 195px;
+    width: 140px;
+    height: 140px;
+    background: rgba(255,255,255,0.1);
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    z-index: 10;
+}
+
+.joy-center {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 55px; height: 55px;
+    background: #fff; border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.arrow { position: absolute; color: rgba(255,255,255,0.4); font-size: 16px; }
+.up { top: 5px; left: 45%; }
+.down { bottom: 5px; left: 45%; }
+.left { left: 8px; top: 43%; }
+.right { right: 8px; top: 43%; }
+
+/* --- SKIN & BOTTOM NAV --- */
+.current-skin {
+    position: absolute;
+    right: 15px;
+    bottom: 105px;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.skin-thumb {
+    width: 75px; height: 75px;
+    border-radius: 50%;
+    border: 4px solid #a557ff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+.skin-text span { color: white; font-size: 10px; font-weight: 800; }
+.skin-text h3 { color: #ffd44a; font-size: 16px; margin-top: -3px; }
+
+.bottom-menu {
+    position: absolute;
+    bottom: 0; width: 100%;
+    height: 90px;
+    background: #0a0f1c;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-top: 2px solid rgba(255,255,255,0.1);
+    z-index: 20;
+}
+
+.menu-item { color: white; text-align: center; font-size: 10px; font-weight: 700; }
+.menu-icon { font-size: 26px; }
+
+/* --- Responsive tweaks for small screens to prevent overlap --- */
+@media (max-width: 420px), (max-height: 860px) {
+    .game-container {
+        border-radius: 22px;
+    }
+
+    .header-section { top: 10px; left: 10px; }
+    .logo img { width: 95px; }
+
+    .status-panel {
+        top: 10px;
+        right: 8px;
+        width: 185px;
+        padding: 10px;
+    }
+
+    .location-panel { top: 220px; left: 10px; }
+    .location-title { font-size: 14px; margin-bottom: 8px; }
+
+    .currency { top: 140px; right: 10px; }
+    .money-box { width: 120px; font-size: 16px; }
+
+    .character { height: 420px; bottom: 115px; }
+
+    .info-panel {
+        top: 255px;
+        right: 8px;
+        width: 140px;
+    }
+    .info-header { font-size: 24px; }
+
+    .actions {
+        right: 8px;
+        bottom: 195px;
+        gap: 6px;
+    }
+    .circle-btn { width: 66px; height: 66px; }
+    .btn-label { font-size: 9px; }
+    .icon { font-size: 18px; }
+
+    .joystick {
+        left: 12px;
+        bottom: 180px;
+        width: 120px;
+        height: 120px;
+    }
+    .joy-center { width: 50px; height: 50px; }
+
+    .current-skin { right: 10px; bottom: 95px; }
+    .skin-thumb { width: 66px; height: 66px; }
+    .skin-text h3 { font-size: 14px; }
+
+    .bottom-menu { height: 82px; }
+}
+
