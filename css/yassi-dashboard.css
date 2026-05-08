@@ -441,11 +441,17 @@ body {
     padding: 0 5px;
     cursor: pointer;
     transition: color 0.2s ease;
+
+    /* lock vertical sizing so all items look identical */
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 2px;
+    line-height: 1.05;
 }
+
 
 .menu-item:hover {
     color: #ffd44a;
@@ -457,13 +463,17 @@ body {
 }
 
 .menu-icon-img {
-    width: clamp(24px, 6vw, 28px);
-    height: clamp(24px, 6vw, 28px);
+   height: 50px;
+   width: 50px;
     object-fit: contain;
     display: block;
+
+    /* remove negative margin so icons align consistently across items */
+    margin-top: 0;
+
     filter: drop-shadow(0 2px 3px rgba(0,0,0,0.35));
-    margin-top: -2px;
 }
+
 
 
 /* ===== RESPONSIVE ADJUSTMENTS ===== */
