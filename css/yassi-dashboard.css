@@ -38,6 +38,71 @@ body {
     z-index: 1;
 }
 
+/* ===== WELCOME OVERLAY ===== */
+.welcome-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(4px);
+    animation: welcomeFadeIn 0.25s ease-out both;
+}
+
+@keyframes welcomeFadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(1.04);
+        filter: blur(4px);
+    }
+    60% {
+        opacity: 1;
+        transform: scale(1.0);
+        filter: blur(0px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0px);
+    }
+}
+
+.welcome-dismiss {
+    transform-origin: center;
+}
+
+
+
+.welcome-dismiss {
+    border: 0;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    max-width: 92%;
+    max-height: 80%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.welcome-dismiss img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.welcome-overlay.is-hidden {
+    display: none;
+}
+
+
+
 /* ===== TOP UI ===== */
 .top-ui {
     position: absolute;
