@@ -1,127 +1,137 @@
- (function () {
-      var progressFill = document.getElementById('progressFill');
-      var progressText = document.getElementById('progressText');
+(function () {
+  var avatarFill = document.getElementById('avatarFill');
+  var progressFill = document.getElementById('progressFill');
+  var progressText = document.getElementById('progressText');
+  var progressPercent = document.getElementById('progressPercent');
+  var loader = document.querySelector('.loader');
+  var yassiAvatar = document.getElementById('yassiAvatar');
 
-      var NAV_DELAY_MS = 1200; // short safety delay for smoother transition
-      var MAX_WAIT_MS = 9000; // fallback so we never get stuck
+  var NAV_DELAY_MS = 1200;
+  var MAX_WAIT_MS = 9000;
 
-      // Critical dashboard assets (match paths used in pages/yassi-dashboard.html)
-      var imageUrls = [
-        // background
-        './assets/Yassi-Background.png',
+  var imageUrls = [
+    './assets/Yassi-Background.png',
+    "./assets/Welcome to Yassi's.png",
+    "./assets/Welcome to Yassi's Game.png",
+    "./assets/Yassi's Game.png",
+    "./assets/Yassi Avatar.png",
+    "./assets/avatar.png",
+    "./assets/location/location.png",
+    "./assets/location/Yassi's Home.png",
+    "./assets/location/Kakai's Store.png",
+    "./assets/location/Lola's House.png",
+    "./assets/location/School.png",
+    "./assets/buttom-menu/inventory.png",
+    "./assets/buttom-menu/quests.png",
+    "./assets/buttom-menu/values.png",
+    "./assets/buttom-menu/cookbook.png",
+    "./assets/buttom-menu/settings.png"
+  ];
 
-        // welcome overlay (different variants exist in assets; preload the ones used by dashboard)
-        "./assets/Welcome to Yassi's.png",
-        "./assets/Welcome to Yassi's Game.png",
+  var audioUrls = [
+    "./audio/Welcome to Yassi's Game.mp3",
+    "./audio/sound/bg-yassi-sound.mp3"
+  ];
 
-        // logos / character / skin
-        "./assets/Yassi's Game.png",
-        "./assets/Yassi Avatar.png",
-        "./assets/avatar.png",
+  var loadingMessages = [
+    "Waking up Yassi",
+    "Loading memories",
+    "Preparing world",
+    "Syncing friends",
+    "Finalizing avatar",
+    "Almost ready!",
+    "Launching game..."
+  ];
 
-        // location icons
-        "./assets/location/location.png",
-        "./assets/location/Yassi's Home.png",
-        "./assets/location/Kakai's Store.png",
-        "./assets/location/Lola's House.png",
-        "./assets/location/School.png",
+  function setProgress(done, total) {
+    if (!progressFill || !progressText || !progressPercent || !avatarFill) return;
+    
+    var pct = total ? Math.round((done / total) * 100) : 0;
+    
+    // Update progress bar
+    progressFill.style.width = pct + '%';
+    progressPercent.textContent = pct + '%';
+    
+    // Update avatar fill (conic gradient rotates based on percentage)
+    var rotation = (pct / 100) * 360;
+    avatarFill.style.background = `
+      conic-gradient(
+        #7ed321 0deg,
+        #37c8ff 90deg,
+        #ffbc2f 180deg,
+        #7ed321 270deg,
+        transparent ${rotation}deg,
+        transparent 360deg
+      )
+    `;
+    
+    // Update message
+    var messageIndex = Math.min(Math.floor((done / total) * loadingMessages.length), loadingMessages.length - 1);
+    progressText.textContent = loadingMessages[messageIndex];
+  }
 
-        // bottom menu icons
-        "./assets/buttom-menu/inventory.png",
-        "./assets/buttom-menu/quests.png",
-        "./assets/buttom-menu/values.png",
-        "./assets/buttom-menu/cookbook.png",
-        "./assets/buttom-menu/settings.png"
-      ];
+  function preloadImage(url) {
+    return new Promise(function (resolve) {
+      var img = new Image();
+      img.onload = function () { resolve(); };
+      img.onerror = function () { resolve(); };
+      img.src = url;
+    });
+  }
 
-      // Audio is safe to preload; if browser blocks, we still redirect.
-      var audioUrls = [
-        "./audio/Welcome to Yassi's Game.mp3",
-        "./audio/sound/bg-yassi-sound.mp3"
-      ];
-
-
-
-
-
-      function setProgress(done, total) {
-        if (!progressFill || !progressText) return;
-        var pct = total ? Math.round((done / total) * 100) : 0;
-        progressFill.style.width = pct + '%';
-        progressText.textContent = 'Loading assets... ' + done + '/' + total;
+  function preloadAudio(url) {
+    return new Promise(function (resolve) {
+      try {
+        var a = new Audio();
+        var done = false;
+        function finish() {
+          if (done) return;
+          done = true;
+          resolve();
+        }
+        a.addEventListener('canplaythrough', finish, { once: true });
+        a.addEventListener('error', finish, { once: true });
+        a.preload = 'auto';
+        a.src = url;
+        setTimeout(finish, 2500);
+      } catch (e) {
+        resolve();
       }
+    });
+  }
 
-      function preloadImage(url) {
-        return new Promise(function (resolve) {
-          var img = new Image();
-          img.onload = function () { resolve(); };
-          img.onerror = function () { resolve(); };
-          img.src = url;
-        });
-      }
+  // Preload Yassi avatar first for immediate visual feedback
+  var avatarPreload = preloadImage('./assets/Yassi Avatar.png');
+  yassiAvatar.onload = function() {
+    yassiAvatar.style.opacity = '1';
+  };
 
-      function preloadAudio(url) {
-        return new Promise(function (resolve) {
-          try {
-            var a = new Audio();
-            var done = false;
-            function finish() {
-              if (done) return;
-              done = true;
-              resolve();
-            }
-            a.addEventListener('canplaythrough', finish, { once: true });
-            a.addEventListener('error', finish, { once: true });
-            a.preload = 'auto';
-            a.src = url;
+  var all = imageUrls.map(preloadImage).concat(audioUrls.map(preloadAudio));
+  var total = all.length;
+  var doneCount = 0;
 
-            // Fallback in case events don't fire
-            setTimeout(finish, 2500);
-          } catch (e) {
-            resolve();
-          }
-        });
-      }
+  setProgress(0, total);
 
-      var all = [];
+  var perItem = all.map(function (p) {
+    return p.then(function () {
+      doneCount++;
+      setProgress(doneCount, total);
+    });
+  });
 
-      // De-duplicate (in case there are accidental repeats)
-      var seen = new Set();
-      imageUrls.concat(audioUrls).forEach(function (u) {
-        if (!u || typeof u !== 'string') return;
-        if (seen.has(u)) return;
-        seen.add(u);
-      });
+  var redirect = function () {
+    loader.classList.add('loading-complete');
+    setTimeout(function() {
+      window.location.replace('./pages/yassi-dashboard.html');
+    }, 800);
+  };
 
-      all = imageUrls.map(preloadImage).concat(audioUrls.map(preloadAudio));
+  Promise.allSettled(perItem).then(function () {
+    var elapsed = Date.now() - performance.now();
+    var remaining = NAV_DELAY_MS - elapsed;
+    if (remaining < 0) remaining = 0;
+    setTimeout(redirect, remaining);
+  });
 
-      var total = all.length;
-      var doneCount = 0;
-      setProgress(0, total);
-
-      var start = Date.now();
-
-      var perItem = all.map(function (p) {
-        return p.then(function () {
-          doneCount++;
-          setProgress(doneCount, total);
-        });
-      });
-
-      var redirect = function () {
-        // Cache should make the next page faster.
-        window.location.replace('./pages/yassi-dashboard.html');
-      };
-
-      Promise.allSettled(perItem).then(function () {
-        var elapsed = Date.now() - start;
-        var remaining = NAV_DELAY_MS - elapsed;
-        if (remaining < 0) remaining = 0;
-        setTimeout(redirect, remaining);
-      });
-
-      // Hard fallback
-      setTimeout(function () {
-        redirect();
-      }, MAX_WAIT_MS);
-    })();
+  setTimeout(redirect, MAX_WAIT_MS);
+})();

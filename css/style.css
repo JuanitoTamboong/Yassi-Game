@@ -1,33 +1,189 @@
- html, body {
-      height: 100%;
-      margin: 0;
-      background: #0a0f1c;
-      color: #fff;
-      font-family: Arial, sans-serif;
-    }
-    .loader {
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .bar {
-      width: min(360px, 80vw);
-      height: 10px;
-      background: rgba(255,255,255,0.15);
-      border-radius: 999px;
-      overflow: hidden;
-    }
-    .bar > span {
-      display: block;
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, #7ed321, #37c8ff, #ffbc2f);
-      transition: width 200ms ease;
-    }
-    .hint {
-      font-size: 12px;
-      opacity: 0.85;
-    }
+html, body {
+  height: 100%;
+  margin: 0;
+  background: linear-gradient(135deg, #0a0f1c 0%, #1a2338 100%);
+  color: #fff;
+  font-family: 'Arial', sans-serif;
+  overflow: hidden;
+}
+
+.loader {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 30px;
+  padding: 20px;
+  position: relative;
+}
+
+.avatar-container {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 0 20px rgba(115, 211, 33, 0.3));
+  transition: all 0.3s ease;
+}
+
+.avatar-fill {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  background: conic-gradient(
+    #7ed321 0deg,
+    #37c8ff 90deg,
+    #ffbc2f 180deg,
+    #7ed321 270deg,
+    transparent 360deg
+  );
+  border-radius: 50%;
+  transform: rotate(-90deg);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
+}
+
+.avatar-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 220px;
+  height: 220px;
+  background: radial-gradient(circle, rgba(115, 211, 33, 0.3) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: all 0.6s ease;
+  z-index: 0;
+}
+
+.title {
+  font-weight: 800;
+  font-size: 28px;
+  letter-spacing: 1px;
+  background: linear-gradient(45deg, #7ed321, #37c8ff, #ffbc2f);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-align: center;
+  margin: 0;
+}
+
+.progress-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  min-width: 300px;
+}
+
+.progress-text {
+  font-size: 14px;
+  opacity: 0.9;
+  font-weight: 500;
+  min-height: 20px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #7ed321, #37c8ff, #ffbc2f);
+  border-radius: 20px;
+  transition: width 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+.progress-percent {
+  font-size: 16px;
+  font-weight: 700;
+  color: #7ed321;
+  min-width: 40px;
+  text-align: center;
+}
+
+/* Loading complete animations */
+.loading-complete .avatar {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 30px rgba(115, 211, 33, 0.6));
+}
+
+.loading-complete .avatar-glow {
+  opacity: 1;
+  animation: pulse 2s infinite;
+}
+
+.loading-complete .avatar-fill {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+  50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.7; }
+}
+
+@keyframes spin {
+  from { transform: rotate(-90deg); }
+  to { transform: rotate(270deg); }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .avatar-container {
+    width: 160px;
+    height: 160px;
+  }
+  
+  .avatar {
+    width: 140px;
+    height: 140px;
+  }
+  
+  .avatar-glow {
+    width: 180px;
+    height: 180px;
+  }
+  
+  .title {
+    font-size: 24px;
+  }
+}

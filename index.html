@@ -3,17 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Loading</title>
-<link rel="stylesheet" href="css/style.css">
+  <title>Loading Yassi</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <div class="loader" role="status" aria-live="polite">
-    <div style="font-weight:800; font-size:18px; letter-spacing:0.5px;">Loading Yassi...</div>
-    <div class="bar" aria-hidden="true"><span id="progressFill"></span></div>
-    <div class="hint" id="progressText">Preparing assets</div>
+    <div class="avatar-container">
+      <img src="./assets/avatar.png" alt="Yassi Avatar" id="yassiAvatar" class="avatar" />
+      <div class="avatar-fill" id="avatarFill"></div>
+      <div class="avatar-glow"></div>
+    </div>
+    <div class="title">Loading Yassi...</div>
+    <div class="progress-info">
+      <div class="progress-text" id="progressText">Waking up Yassi</div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <div class="progress-percent" id="progressPercent">0%</div>
+    </div>
   </div>
 
   <script src="./js/script.js"></script>
 </body>
 </html>
-
