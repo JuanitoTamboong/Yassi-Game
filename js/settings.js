@@ -34,8 +34,24 @@
     }
 
     function applyMusicSetting() {
+        // Default to ON for first visit so bg music starts during welcome.
         var musicEnabled = getBool(KEY_MUSIC_ENABLED, true);
         if (!backgroundAudio) return;
+
+        // Always reflect current toggle state.
+        backgroundAudio.muted = !musicEnabled;
+
+        if (musicEnabled) {
+            backgroundAudio.volume = 1;
+            // Try to start playback.
+            try {
+                if (backgroundAudio.currentTime > 0) backgroundAudio.currentTime = 0;
+                var p0 = backgroundAudio.play();
+                if (p0 && typeof p0.catch === 'function') p0.catch(function () {});
+            } catch (e) {}
+        }
+
+
 
         // Background music toggle should control the bg track only.
         backgroundAudio.muted = !musicEnabled;

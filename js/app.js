@@ -32,11 +32,37 @@
         } catch (e) {
             // ignore
         }
+
+        // Also trigger background music when user clicks/taps the welcome overlay.
+        var backgroundAudio = document.getElementById('backgroundAudio');
+        if (backgroundAudio) {
+            var enabled = true;
+            try {
+                var raw = localStorage.getItem('yassi_music_enabled');
+                if (raw === null || raw === undefined) enabled = true;
+                else enabled = raw === 'true';
+            } catch (e) {
+                enabled = true;
+            }
+
+            backgroundAudio.muted = !enabled;
+            if (enabled) {
+                backgroundAudio.volume = 1;
+                try {
+                    if (backgroundAudio.currentTime > 0) backgroundAudio.currentTime = 0;
+                    var pb = backgroundAudio.play();
+                    if (pb && typeof pb.catch === 'function') pb.catch(function () {});
+                } catch (e) {}
+            }
+        }
     }
 
-    // Start audio when the welcome overlay appears.
-    // NOTE: many browsers require a user gesture; we also bind a first-tap attempt below.
-    tryPlayAudio();
+
+    // Do NOT autoplay background music here.
+    // Autoplay is blocked until user gesture; we start audio only on welcome click.
+    // (Welcome audio will also be blocked until user gesture.)
+    // tryPlayAudio();
+
 
     function hide() {
         overlay.classList.add('is-hidden');
@@ -45,40 +71,15 @@
         // Stop welcome audio immediately on dismiss/auto-hide.
         stopAudio();
 
-        // If background music is enabled in settings, start it now (after welcome appears).
-        // This ensures bg music is heard when the welcome overlay is shown.
-        var backgroundAudio = document.getElementById('backgroundAudio');
-        try {
-            if (backgroundAudio) {
-                var enabled = true;
-                try {
-                    var raw = localStorage.getItem('yassi_music_enabled');
-                    if (raw === null || raw === undefined) enabled = true;
-                    else enabled = raw === 'true';
-                } catch (e) {
-                    enabled = true;
-                }
-
-                backgroundAudio.muted = !enabled;
-                if (enabled) {
-                    backgroundAudio.volume = 1;
-                    if (backgroundAudio.currentTime > 0) backgroundAudio.currentTime = 0;
-                    var p = backgroundAudio.play();
-                    if (p && typeof p.catch === 'function') {
-                        p.catch(function () {});
-                    }
-                }
-            }
-        } catch (e) {
-            // ignore
-        }
-
+        // Background music is controlled ONLY by the MUSIC toggle.
+        // So we do NOT start/stop backgroundAudio here.
 
         // Small delay before hiding completely for smooth transition
         setTimeout(() => {
             overlay.style.display = 'none';
         }, 300);
     }
+
 
     // Auto-hide after 5 seconds
     setTimeout(hide, 5000);
