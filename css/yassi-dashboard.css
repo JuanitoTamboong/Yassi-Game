@@ -24,10 +24,8 @@ body {
     height: 100vh;
     background: url('../assets/Yassi-Background.png') center/cover no-repeat;
     overflow: hidden;
-    /* REMOVED: box-shadow, border-radius, margin */
     max-width: none;
     max-height: none;
-    /* REMOVED: aspect-ratio */
 }
 
 /* ===== OVERLAY ===== */
@@ -100,7 +98,7 @@ body {
     filter: brightness(1.1) drop-shadow(0 4px 12px rgba(255, 255, 255, 0.3));
 }
 
-/* ===== TOP UI - RESTORED ORIGINAL ===== */
+/* ===== TOP UI ===== */
 .top-ui {
     position: absolute;
     top: 10px;
@@ -273,7 +271,7 @@ body {
     box-shadow: 0 5px 15px rgba(126,211,33,0.5);
 }
 
-/* ===== INFO PANEL - ORIGINAL ===== */
+/* ===== INFO PANEL ===== */
 .info-panel {
     position: absolute;
     pointer-events: none;
@@ -348,7 +346,7 @@ body {
     margin: 0;
 }
 
-/* ===== LOCATION - ORIGINAL ===== */
+/* ===== LOCATION ===== */
 .location-panel {
     position: absolute;
     top: 220px;
@@ -398,7 +396,7 @@ body {
     filter: drop-shadow(0 2px 2px rgba(0,0,0,0.35));
 }
 
-/* ===== CHARACTER - ORIGINAL ===== */
+/* ===== CHARACTER ===== */
 .character {
     position: absolute;
     bottom: 90px;
@@ -411,7 +409,7 @@ body {
     image-rendering: -webkit-optimize-contrast;
 }
 
-/* ===== CURRENT SKIN - ORIGINAL ===== */
+/* ===== CURRENT SKIN ===== */
 .current-skin {
     position: absolute;
     right: 10px;
@@ -451,7 +449,7 @@ body {
     text-shadow: 0 1px 3px rgba(0,0,0,0.5);
 }
 
-/* ===== ACTION BUTTONS - ORIGINAL ===== */
+/* ===== ACTION BUTTONS ===== */
 .actions {
     position: absolute;
     right: 12px;
@@ -517,7 +515,7 @@ body {
     line-height: 1;
 }
 
-/* ===== BOTTOM MENU - ORIGINAL ===== */
+/* ===== BOTTOM MENU ===== */
 .bottom-menu {
     position: absolute;
     bottom: 0;
@@ -565,7 +563,9 @@ body {
     filter: drop-shadow(0 2px 3px rgba(0,0,0,0.35));
 }
 
-/* ===== RESPONSIVE - SIMPLIFIED ===== */
+/* ===== RESPONSIVE - PORTRAIT ===== */
+
+/* Portrait small screens */
 @media (max-width: 480px) and (max-height: 900px) {
     .top-ui { padding-top: 4px; gap: 4px; }
     .status-panel { padding: 6px 8px; }
@@ -577,6 +577,7 @@ body {
     .money-box { width: 98px; padding: 6px 10px; font-size: 13px; height: 34px; }
 }
 
+/* Short portrait screens */
 @media (max-height: 700px) {
     .info-panel { top: 100px; }
     .character { height: 340px; bottom: 70px; }
@@ -584,8 +585,292 @@ body {
     .location-panel { top: 180px; }
 }
 
+/* ===== LANDSCAPE MODE - ZERO OVERLAP SYSTEM ===== */
+
+/* LANDSCAPE 1: 400px-500px height (Most common) */
 @media (max-height: 500px) and (orientation: landscape) {
-    .info-panel { top: 90px; }
-    .character { height: 280px; }
-    .bottom-menu { height: 70px; }
+    .top-ui {
+        top: 4px !important;
+        left: 4px !important;
+        right: 4px !important;
+        padding-top: 2px;
+        gap: 3px;
+        align-items: center;
+    }
+    
+    .status-panel {
+        width: 150px !important;
+        padding: 4px 6px !important;
+        max-width: 150px !important;
+    }
+    
+    .bar-title {
+        font-size: 9px !important;
+    }
+    
+    .progress {
+        height: 6px !important;
+    }
+    
+    .money-box {
+        width: 85px !important;
+        height: 30px !important;
+        padding: 4px 6px !important;
+        font-size: 11px !important;
+        gap: 2px !important;
+    }
+    
+    .coin-svg, .dollar-svg {
+        width: 16px !important;
+        height: 16px !important;
+    }
+    
+    .logo img {
+        width: 65px !important;
+        max-height: 55px !important;
+    }
+    
+    /* === INFO PANEL - LEFT SIDE (NO OVERLAP) === */
+    .info-panel {
+        top: 72px !important;
+        right: auto !important;
+        left: 8px !important;
+        width: 105px !important;
+        max-width: 120px !important;
+    }
+    
+    .info-header {
+        font-size: 16px !important;
+        padding: 3px 0 !important;
+    }
+    
+    .info-sub {
+        font-size: 8px !important;
+        padding: 1px 0 !important;
+    }
+    
+    .level {
+        font-size: 11px !important;
+    }
+    
+    .exp-text {
+        font-size: 8px !important;
+    }
+    
+    .exp-bar {
+        height: 4px !important;
+        margin-bottom: 4px !important;
+    }
+    
+    .description {
+        font-size: 8px !important;
+        line-height: 1.2 !important;
+    }
+    
+    /* === CHARACTER === */
+    .character {
+        height: 240px !important;
+        bottom: 68px !important;
+        max-height: 40vh !important;
+    }
+    
+    /* === CURRENT SKIN - FAR RIGHT === */
+    .current-skin {
+        bottom: 68px !important;
+        right: 8px !important;
+    }
+    
+    .skin-thumb {
+        width: 48px !important;
+        height: 48px !important;
+        border-width: 3px !important;
+    }
+    
+    .skin-text h3 {
+        font-size: 10px !important;
+    }
+    
+    .skin-text span {
+        font-size: 6px !important;
+    }
+    
+    /* === LOCATION - BELOW INFO PANEL === */
+    .location-panel {
+        top: 185px !important;
+        left: 8px !important;
+        max-width: 160px !important;
+    }
+    
+    .location-title {
+        font-size: 11px !important;
+        padding: 2px 8px !important;
+        margin-bottom: 6px !important;
+        gap: 4px !important;
+    }
+    
+    .location-icon, .location-item-icon {
+        width: 36px !important;
+        height: 36px !important;
+    }
+    
+    .location-item {
+        font-size: 11px !important;
+        margin-bottom: 4px !important;
+        gap: 6px !important;
+    }
+    
+    /* === ACTION BUTTONS - RIGHT SIDE ONLY === */
+    .actions {
+        top: 290px !important;
+        right: 12px !important;
+        left: auto !important;
+        width: 160px !important;
+        gap: 6px !important;
+        justify-content: flex-end !important;
+    }
+    
+    .circle-btn {
+        width: 44px !important;
+        height: 44px !important;
+    }
+    
+    .btn-label {
+        font-size: 6px !important;
+    }
+    
+    .icon {
+        font-size: 14px !important;
+    }
+    
+    /* === BOTTOM MENU === */
+    .bottom-menu {
+        height: 62px !important;
+        padding: 0 6px !important;
+    }
+    
+    .menu-icon-img {
+        height: 38px !important;
+        width: 38px !important;
+    }
+    
+    .menu-item {
+        font-size: 8px !important;
+        gap: 1px !important;
+    }
+}
+
+/* LANDSCAPE 2: Ultra compact 300px-400px height */
+@media (max-height: 400px) and (orientation: landscape) {
+    .info-panel {
+        top: 64px !important;
+        left: 6px !important;
+        width: 95px !important;
+    }
+    
+    .location-panel {
+        top: 165px !important;
+        left: 6px !important;
+    }
+    
+    .character {
+        height: 200px !important;
+        bottom: 64px !important;
+    }
+    
+    .current-skin {
+        bottom: 64px !important;
+        right: 6px !important;
+    }
+    
+    .skin-thumb {
+        width: 42px !important;
+        height: 42px !important;
+    }
+    
+    .actions {
+        top: 260px !important;
+        right: 10px !important;
+        width: 140px !important;
+    }
+    
+    .circle-btn {
+        width: 40px !important;
+        height: 40px !important;
+    }
+    
+    .bottom-menu {
+        height: 58px !important;
+    }
+    
+    .menu-icon-img {
+        height: 34px !important;
+        width: 34px !important;
+    }
+}
+
+/* LANDSCAPE 3: Extreme compact <300px height */
+@media (max-height: 300px) and (orientation: landscape) {
+    .info-panel {
+        top: 54px !important;
+        left: 4px !important;
+        width: 85px !important;
+    }
+    
+    .location-panel {
+        top: 145px !important;
+        left: 4px !important;
+    }
+    
+    .character {
+        height: 160px !important;
+        bottom: 60px !important;
+    }
+    
+    .current-skin {
+        bottom: 60px !important;
+        right: 4px !important;
+    }
+    
+    .actions {
+        top: 220px !important;
+        right: 8px !important;
+    }
+    
+    .bottom-menu {
+        height: 54px !important;
+    }
+}
+
+/* Wide landscape tablets */
+@media (min-width: 1000px) and (orientation: landscape) {
+    .character {
+        height: 320px !important;
+        max-height: 50vh !important;
+    }
+    
+    .actions {
+        top: 340px !important;
+        width: 240px !important;
+    }
+    
+    .circle-btn {
+        width: 58px !important;
+        height: 58px !important;
+    }
+}
+
+/* iPhone landscape specific fix */
+@media only screen and (max-height: 360px) and (min-width: 667px) and (orientation: landscape) {
+    .character {
+        height: 180px !important;
+        bottom: 62px !important;
+    }
+    
+    .actions {
+        top: 230px !important;
+    }
+    
+    .bottom-menu {
+        height: 56px !important;
+    }
 }
