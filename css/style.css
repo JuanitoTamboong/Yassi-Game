@@ -1,0 +1,33 @@
+ html, body {
+      height: 100%;
+      margin: 0;
+      background: #0a0f1c;
+      color: #fff;
+      font-family: Arial, sans-serif;
+    }
+    .loader {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .bar {
+      width: min(360px, 80vw);
+      height: 10px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .bar > span {
+      display: block;
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #7ed321, #37c8ff, #ffbc2f);
+      transition: width 200ms ease;
+    }
+    .hint {
+      font-size: 12px;
+      opacity: 0.85;
+    }

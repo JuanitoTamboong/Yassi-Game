@@ -1,11 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loading</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Loading</title>
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    
+  <div class="loader" role="status" aria-live="polite">
+    <div style="font-weight:800; font-size:18px; letter-spacing:0.5px;">Loading Yassi...</div>
+    <div class="bar" aria-hidden="true"><span id="progressFill"></span></div>
+    <div class="hint" id="progressText">Preparing assets</div>
+  </div>
+
+  <script src="./js/script.js"></script>
 </body>
 </html>
+
