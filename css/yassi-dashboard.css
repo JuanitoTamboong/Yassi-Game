@@ -10,6 +10,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    height: 100dvh;
     width: 100vw;
     background: #0a0f1c;
     overflow: hidden;
@@ -17,13 +18,16 @@ body {
     margin: 0 !important;
 }
 
+
 /* ===== GAME CONTAINER ===== */
 .game-container {
     position: relative;
     width: 100vw;
     height: 100vh;
+    height: 100dvh;
     background: url('../assets/Yassi-Background.png') center/cover no-repeat;
     overflow: hidden;
+
     max-width: none;
     max-height: none;
 }
@@ -396,6 +400,12 @@ body {
 }
 
 /* ===== CHARACTER ===== */
+@keyframes yassi-idle-move {
+    0% { transform: translateX(-50%) translateY(0) rotate(-1deg); }
+    50% { transform: translateX(-50%) translateY(-10px) rotate(1deg); }
+    100% { transform: translateX(-50%) translateY(0) rotate(-1deg); }
+}
+
 .character {
     position: absolute;
     bottom: 90px;
@@ -406,7 +416,16 @@ body {
     width: auto;
     z-index: 2;
     image-rendering: -webkit-optimize-contrast;
+
+    /* idle animation */
+    animation: yassi-idle-move 2.6s ease-in-out infinite;
+    will-change: transform;
 }
+
+@media (prefers-reduced-motion: reduce) {
+    .character { animation: none !important; }
+}
+
 
 /* ===== CURRENT SKIN ===== */
 .current-skin {
@@ -521,6 +540,8 @@ body {
     left: 0;
     right: 0;
     width: 100%;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+
     height: 80px;
     backdrop-filter: blur(20px);
     display: flex;

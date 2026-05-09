@@ -85,22 +85,32 @@
     setTimeout(hide, 5000);
 
     if (btn) {
-        btn.addEventListener('click', () => {
-            // Ensure audio is not blocked if click happens quickly.
-            // (No need to play again after hide() stops it.)
-            stopAudio();
-            hide();
-        });
+        function onUserDismiss() {
+            // User gesture satisfies autoplay restrictions.
+            tryPlayAudio();
+            // Now dismiss the overlay WITHOUT instantly killing the welcome audio.
+            // (Mobile browsers may require the play() call to happen and then allow it to continue.)
+            overlay.classList.add('is-hidden');
+            overlay.setAttribute('aria-hidden', 'true');
+
+            setTimeout(() => {
+                overlay.style.display = 'none';
+            }, 300);
+
+            // Restore scroll after overlay is fully hidden.
+            setTimeout(() => {
+                document.body.style.overflow = '';
+            }, 350);
+        }
+
+        btn.addEventListener('click', onUserDismiss);
 
         btn.addEventListener('touchstart', (e) => {
             e.preventDefault();
-            // Start first (in case autoplay was blocked), then hide().
-            // hide() will stop audio.
-            tryPlayAudio();
-            hide();
-        });
+            onUserDismiss();
+        }, { passive: false });
 
-        // Any first user pointer gesture should satisfy autoplay restrictions.
+        // Also ensure we start audio on the first pointer gesture (covers some touch/click edge cases).
         btn.addEventListener('pointerdown', function () {
             tryPlayAudio();
         }, { once: true });
