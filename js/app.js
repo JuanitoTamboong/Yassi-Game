@@ -42,8 +42,37 @@
         overlay.classList.add('is-hidden');
         overlay.setAttribute('aria-hidden', 'true');
 
-        // Stop audio immediately on dismiss/auto-hide.
+        // Stop welcome audio immediately on dismiss/auto-hide.
         stopAudio();
+
+        // If background music is enabled in settings, start it now (after welcome appears).
+        // This ensures bg music is heard when the welcome overlay is shown.
+        var backgroundAudio = document.getElementById('backgroundAudio');
+        try {
+            if (backgroundAudio) {
+                var enabled = true;
+                try {
+                    var raw = localStorage.getItem('yassi_music_enabled');
+                    if (raw === null || raw === undefined) enabled = true;
+                    else enabled = raw === 'true';
+                } catch (e) {
+                    enabled = true;
+                }
+
+                backgroundAudio.muted = !enabled;
+                if (enabled) {
+                    backgroundAudio.volume = 1;
+                    if (backgroundAudio.currentTime > 0) backgroundAudio.currentTime = 0;
+                    var p = backgroundAudio.play();
+                    if (p && typeof p.catch === 'function') {
+                        p.catch(function () {});
+                    }
+                }
+            }
+        } catch (e) {
+            // ignore
+        }
+
 
         // Small delay before hiding completely for smooth transition
         setTimeout(() => {
