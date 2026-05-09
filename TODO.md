@@ -1,9 +1,10 @@
 # TODO
 
-## Location icons update (emoji -> images)
-- [x] Understand current location UI in `index.html`.
-- [x] Verify image assets exist in `assets/location/`.
-- [ ] Replace emoji icons in the location list with `<img>` tags in `index.html`.
-- [ ] Update CSS in `css/yassi-dashboard.css` to lay out icon + text and size the icons.
-- [ ] Quick manual check: open `index.html` to confirm rendering/alignment.
+## Settings modal readability redesign
+- [ ] Update `css/yassi-dashboard.css` for better contrast & typography in Settings modal
+- [ ] Add distinct ON vs OFF visual styles (classes) for music/sfx toggles
+- [ ] Add `:focus-visible` outlines for keyboard accessibility
+- [ ] Update `js/settings.js` to set toggle state classes based on stored preferences
+- [ ] (If needed) Add initial toggle classes in `index.html`
+- [ ] Manual check: open `index.html`, open Settings, verify readability and ON/OFF differentiation
 

@@ -33,6 +33,12 @@
         }
     }
 
+    function setToggleVisual(toggleEl, enabled) {
+        if (!toggleEl) return;
+        toggleEl.classList.toggle('is-on', !!enabled);
+        toggleEl.classList.toggle('is-off', !enabled);
+    }
+
     function applyMusicSetting() {
         // Default to ON for first visit so bg music starts during welcome.
         var musicEnabled = getBool(KEY_MUSIC_ENABLED, true);
@@ -50,7 +56,6 @@
                 if (p0 && typeof p0.catch === 'function') p0.catch(function () {});
             } catch (e) {}
         }
-
 
 
         // Background music toggle should control the bg track only.
@@ -71,11 +76,11 @@
             }
         }
 
-
         var musicToggle = $('musicToggle');
         if (musicToggle) {
             musicToggle.setAttribute('aria-pressed', musicEnabled ? 'true' : 'false');
             musicToggle.textContent = musicEnabled ? 'MUSIC: ON' : 'MUSIC: OFF';
+            setToggleVisual(musicToggle, musicEnabled);
         }
     }
 
@@ -88,6 +93,7 @@
         if (soundToggle) {
             soundToggle.setAttribute('aria-pressed', soundEnabled ? 'true' : 'false');
             soundToggle.textContent = soundEnabled ? 'SFX: ON' : 'SFX: OFF';
+            setToggleVisual(soundToggle, soundEnabled);
         }
     }
 

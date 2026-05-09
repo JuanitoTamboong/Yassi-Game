@@ -661,6 +661,22 @@ body {
     border: 1px solid rgba(255,255,255,0.12);
 }
 
+
+
+.settings-row-desc {
+    font-size: 13px;
+    line-height: 1.35;
+    color: rgba(255,255,255,0.88);
+}
+
+.settings-footnote {
+    font-size: 12px;
+    color: rgba(255,255,255,0.78);
+    text-align: center;
+    margin-top: 6px;
+}
+
+/* Better readability for toggle button states */
 .settings-toggle {
     border: 1px solid rgba(255,255,255,0.18);
     cursor: pointer;
@@ -669,28 +685,50 @@ body {
     padding: 10px 12px;
     font-size: 14px;
     font-weight: 900;
-    color: white;
-    background: radial-gradient(circle, rgba(255, 212, 74, 0.95), rgba(165, 87, 255, 0.9));
-    box-shadow: 0 10px 25px rgba(0,0,0,0.35);
-    transition: transform 0.15s ease, filter 0.15s ease;
+    color: #ffffff;
+    background: linear-gradient(180deg, rgba(55, 60, 90, 0.65), rgba(12, 14, 26, 0.75));
+    box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+    transition: transform 0.15s ease, filter 0.15s ease, border-color 0.15s ease, background 0.15s ease;
 }
 
 .settings-toggle:hover {
     transform: scale(1.01);
-    filter: brightness(1.06);
+    filter: brightness(1.08);
 }
 
-.settings-row-desc {
-    font-size: 12px;
-    line-height: 1.25;
-    color: rgba(255,255,255,0.85);
+.settings-toggle.is-on {
+    background: linear-gradient(180deg, rgba(255, 212, 74, 0.25), rgba(165, 87, 255, 0.18)),
+        linear-gradient(180deg, rgba(55, 60, 90, 0.65), rgba(12, 14, 26, 0.75));
+    border-color: rgba(255, 212, 74, 0.85);
 }
 
-.settings-footnote {
-    font-size: 11px;
-    color: rgba(255,255,255,0.7);
-    text-align: center;
-    margin-top: 6px;
+.settings-toggle.is-off {
+    background: linear-gradient(180deg, rgba(120, 120, 140, 0.22), rgba(12, 14, 26, 0.78));
+    border-color: rgba(255, 255, 255, 0.14);
+    color: rgba(255, 255, 255, 0.82);
+}
+
+.settings-toggle:focus-visible,
+.settings-modal-close:focus-visible {
+    outline: 3px solid rgba(255, 212, 74, 0.95);
+    outline-offset: 2px;
+}
+
+.settings-modal-close {
+    border: 0;
+    background: rgba(0,0,0,0.25);
+    color: white;
+    width: 34px;
+    height: 34px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 900;
+    transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.settings-modal-close:hover {
+    transform: scale(1.05);
+    background: rgba(0,0,0,0.35);
 }
 
 /* ===== LANDSCAPE MODE - ZERO OVERLAP SYSTEM ===== */
