@@ -2,35 +2,54 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Yassi Dashboard</title>
-<link rel="icon" href="../favicon.ico">
-<link rel="stylesheet" href="../css/yassi-dashboard.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>Yassi Dashboard — Landscape Mode</title>
+<link rel="icon" href="#" data-base-icon>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/yassi-dashboard.css">
 </head>
-
 <body>
 
-<div class="game-container">
+<!-- FORCED LANDSCAPE WARNING OVERLAY - FIXED DESIGN matching reference image -->
+<div class="rotate-warning" id="rotateWarning">
+    <div class="rotate-content">
+        <div class="rotate-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="5" y="2" width="14" height="20" rx="3" stroke="white" stroke-width="1.5" fill="none"/>
+                <rect x="8" y="4" width="8" height="13" rx="1.5" fill="#ffd44a" fill-opacity="0.85"/>
+                <circle cx="12" cy="19" r="1.2" fill="white"/>
+                <path d="M18 8L21 11L18 14" stroke="#7ed321" stroke-width="2" fill="none" stroke-linecap="round"/>
+                <path d="M6 16L3 13L6 10" stroke="#7ed321" stroke-width="2" fill="none" stroke-linecap="round"/>
+                <path d="M21 11H19" stroke="#7ed321" stroke-width="2" stroke-linecap="round"/>
+                <path d="M3 13H5" stroke="#7ed321" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+        </div>
+        <h2>📱 GAME BEST IN <span>LANDSCAPE</span></h2>
+        <p>Please rotate your device for the <strong class="rotate-highlight">optimal experience</strong></p>
+        <div class="rotate-arrow">↻  TURN DEVICE  ↻</div>
+    </div>
+</div>
+
+<div class="game-container" id="gameContainer">
     <div class="overlay"></div>
 
     <!-- WELCOME OVERLAY -->
     <div class="welcome-overlay" id="welcomeOverlay" aria-hidden="false">
         <button class="welcome-dismiss" id="welcomeDismiss" type="button" aria-label="Dismiss welcome">
-            <img src="../assets/Welcome to Yassi's.png" alt="Welcome to Yassi" />
+            <img src="../assets/Welcome to Yassi's.png" alt="Welcome to Yassi" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div style="display:none; background:linear-gradient(145deg,#ffd966,#ffb347); border-radius:32px; padding:12px 28px; font-weight:900; color:#2c1a0a; font-size:1.5rem;">✨ WELCOME ✨</div>
         </button>
     </div>
 
     <!-- TOP UI FIXED ROW -->
     <div class="top-ui">
-        <!-- LOGO LEFT -->
         <div class="header-section">
             <div class="logo">
-                <img src="../assets/Yassi's Game.png" alt="Yassi Logo">
+                <img src="../assets/Yassi's Game.png" alt="Yassi Logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div style="display:none; background:rgba(0,0,0,0.5); border-radius:18px; padding:4px 12px; color:#ffdd99; font-weight:800; font-size:18px;">🌺 YASSI</div>
             </div>
         </div>
 
-        <!-- STATUS CENTER -->
         <div class="status-panel">
             <div class="bar">
                 <div class="bar-title">❤️ PAGGALANG</div>
@@ -46,7 +65,6 @@
             </div>
         </div>
 
-        <!-- CURRENCY RIGHT -->
         <div class="currency">
             <div class="money-box">
                 <div class="coin-container">
@@ -71,7 +89,7 @@
         </div>
     </div>
 
-    <!-- INFO PANEL - LEFT SIDE IN LANDSCAPE -->
+    <!-- INFO PANEL -->
     <div class="info-panel">
         <div class="info-header">YASSI</div>
         <div class="info-sub">The Kind & Helpful Girl</div>
@@ -79,51 +97,50 @@
             <div class="level">⭐ LEVEL 1</div>
             <div class="exp-text">45 / 100 EXP</div>
             <div class="exp-bar"><div class="exp-fill" style="width: 45%;"></div></div>
-            <p class="description">
-                Yassi loves helping her family, respecting elders, and making her community a better place!
-            </p>
+            <p class="description">Yassi loves helping her family, respecting elders, and making her community a better place!</p>
         </div>
     </div>
 
-    <!-- LOCATION PANEL - LEFT SIDE BELOW INFO -->
+    <!-- LOCATION PANEL -->
     <div class="location-panel">
         <div class="location-title">
-            <img class="location-icon" src="../assets/location/location.png" alt="Location" aria-hidden="true">
+            <img class="location-icon" src="../assets/location/location.png" alt="Location" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22white%22%3E%3Cpath d=%22M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z%22/%3E%3C/svg%3E';">
             LOCATION
         </div>
         <div class="location-list">
             <div class="location-item active">
-                <img class="location-item-icon" src="../assets/location/Yassi's Home.png" alt="Yassi's Home" aria-hidden="true">
+                <img class="location-item-icon" src="../assets/location/Yassi's Home.png" alt="Yassi's Home" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22%23ffd44a%22%3E%3Cpath d=%22M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z%22/%3E%3C/svg%3E';">
                 <span>Yassi's Home</span>
             </div>
             <div class="location-item">
-                <img class="location-item-icon" src="../assets/location/Kakai's Store.png" alt="Kakai's Store" aria-hidden="true">
+                <img class="location-item-icon" src="../assets/location/Kakai's Store.png" alt="Kakai's Store" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22%23ffd44a%22%3E%3Cpath d=%22M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zM18 18c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z%22/%3E%3C/svg%3E';">
                 <span>Kakai's Store</span>
             </div>
             <div class="location-item">
-                <img class="location-item-icon" src="../assets/location/Lola's House.png" alt="Lola's House" aria-hidden="true">
+                <img class="location-item-icon" src="../assets/location/Lola's House.png" alt="Lola's House" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22%23ffd44a%22%3E%3Cpath d=%22M12 12c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm6-1.8C18 6.57 15.35 4 12 4s-6 2.57-6 6.2c0 2.34 1.95 5.44 6 9.14 4.05-3.7 6-6.8 6-9.14z%22/%3E%3C/svg%3E';">
                 <span>Lola's House</span>
             </div>
             <div class="location-item">
-                <img class="location-item-icon" src="../assets/location/School.png" alt="School & Plaza" aria-hidden="true">
+                <img class="location-item-icon" src="../assets/location/School.png" alt="School & Plaza" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22%23ffd44a%22%3E%3Cpath d=%22M12 3L1 9l11 6 11-6-11-6zm0 11.5L3.53 10 12 14.5 20.47 10 12 14.5zM12 20l-7-4v-2l7 4 7-4v2l-7 4z%22/%3E%3C/svg%3E';">
                 <span>School & Plaza</span>
             </div>
         </div>
     </div>
 
-    <!-- CHARACTER - CENTER -->
-    <img src="../assets/Yassi Avatar.png" alt="Yassi Character" class="character">
+    <!-- CHARACTER -->
+    <img src="../assets/Yassi Avatar.png" alt="Yassi Character" class="character" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+    <div style="display:none; position:absolute; bottom:100px; left:50%; transform:translateX(-50%); font-size:100px;">👧</div>
 
-    <!-- CURRENT SKIN - FAR RIGHT -->
+    <!-- CURRENT SKIN -->
     <div class="current-skin">
-        <img src="../assets/avatar.png" alt="Current Skin" class="skin-thumb">
+        <img src="../assets/avatar.png" alt="Current Skin" class="skin-thumb" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ccircle cx=%2250%22 cy=%2250%22 r=%2245%22 fill=%22%23a557ff%22/%3E%3Ccircle cx=%2235%22 cy=%2240%22 r=%225%22 fill=%22white%22/%3E%3Ccircle cx=%2265%22 cy=%2240%22 r=%225%22 fill=%22white%22/%3E%3Cpath d=%22M35 60 Q50 75 65 60%22 stroke=%22white%22 stroke-width=%223%22 fill=%22none%22/%3E%3C/svg%3E';">
         <div class="skin-text">
             <span>CURRENT SKIN</span>
             <h3>Everyday Yassi</h3>
         </div>
     </div>
 
-    <!-- ACTION BUTTONS - RIGHT SIDE -->
+    <!-- ACTION BUTTONS -->
     <div class="actions">
         <div class="circle-btn gold" title="MANO">
             <span class="icon">✋</span>
@@ -139,49 +156,46 @@
         </div>
     </div>
 
-    <!-- BOTTOM MENU - FULL WIDTH -->
+    <!-- BOTTOM MENU -->
     <div class="bottom-menu">
         <div class="menu-item" title="Inventory">
-            <img class="menu-icon-img" src="../assets/buttom-menu/inventory.png" alt="Inventory">
+            <img class="menu-icon-img" src="../assets/buttom-menu/inventory.png" alt="Inventory" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22white%22%3E%3Cpath d=%22M20 8h-2.81c-.45-.78-1.07-1.45-1.82-1.96L17 4.41 15.59 3l-2.17 2.17C12.96 5.06 12.49 5 12 5s-.96.06-1.41.17L8.41 3 7 4.41l1.62 1.63c-.75.51-1.36 1.18-1.81 1.96H4v11h16V8zm-8 8c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z%22/%3E%3C/svg%3E';">
             <span>INVENTORY</span>
         </div>
         <div class="menu-item" title="Quests">
-            <img class="menu-icon-img" src="../assets/buttom-menu/quests.png" alt="Quests">
+            <img class="menu-icon-img" src="../assets/buttom-menu/quests.png" alt="Quests" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22white%22%3E%3Cpath d=%22M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z%22/%3E%3C/svg%3E';">
             <span>QUESTS</span>
         </div>
         <div class="menu-item" title="Values">
-            <img class="menu-icon-img" src="../assets/buttom-menu/values.png" alt="Values">
+            <img class="menu-icon-img" src="../assets/buttom-menu/values.png" alt="Values" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22white%22%3E%3Cpath d=%22M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z%22/%3E%3C/svg%3E';">
             <span>VALUES</span>
         </div>
         <div class="menu-item" title="Cookbook">
-            <img class="menu-icon-img" src="../assets/buttom-menu/cookbook.png" alt="Cookbook">
+            <img class="menu-icon-img" src="../assets/buttom-menu/cookbook.png" alt="Cookbook" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22white%22%3E%3Cpath d=%22M4 6h16v2H4zm2-4h12v2H6zm14 8v10H4V10h16z%22/%3E%3C/svg%3E';">
             <span>COOKBOOK</span>
         </div>
         <div class="menu-item" title="Settings" id="settingsOpen" role="button" tabindex="0" aria-label="Open Settings">
-            <img class="menu-icon-img" src="../assets/buttom-menu/settings.png" alt="Settings">
-            <span>Settings</span>
+            <img class="menu-icon-img" src="../assets/buttom-menu/settings.png" alt="Settings" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22white%22%3E%3Cpath d=%22M19.14 12.94c.04-.3.06-.61.06-.94 0-.33-.02-.64-.06-.94l2.03-1.58c.18-.14.23-.38.12-.56l-1.89-3.28c-.12-.19-.36-.26-.56-.18l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.2-.2-.34-.4-.34h-3.78c-.2 0-.36.14-.4.34l-.36 2.54c-.59.24-1.12.56-1.62.94l-2.39-.96c-.2-.08-.44-.01-.56.18l-1.89 3.28c-.12.19-.07.42.12.56l2.03 1.58c-.04.3-.06.61-.06.94 0 .33.02.64.06.94l-2.03 1.58c-.18.14-.23.38-.12.56l1.89 3.28c.12.19.36.26.56.18l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.2.2.34.4.34h3.78c.2 0 .36-.14.4-.34l.36-2.54c.59-.24 1.12-.56 1.62-.94l2.39.96c.2.08.44.01.56-.18l1.89-3.28c.12-.19.07-.42-.12-.56l-2.03-1.58zM12 15c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z%22/%3E%3C/svg%3E';">
+            <span>SETTINGS</span>
         </div>
     </div>
 
-    <!-- SETTINGS MODAL (theme-matching) -->
+    <!-- SETTINGS MODAL -->
     <div class="settings-modal" id="settingsModal" aria-hidden="true">
         <div class="settings-modal-panel" role="dialog" aria-modal="true" aria-label="Settings">
             <div class="settings-modal-header">
                 <div class="settings-modal-title">SETTINGS</div>
                 <button class="settings-modal-close" id="settingsClose" type="button" aria-label="Close Settings">✕</button>
             </div>
-
             <div class="settings-modal-body">
                 <div class="settings-row">
                     <button class="settings-toggle is-on" id="musicToggle" type="button" aria-pressed="true">MUSIC: ON</button>
-                    <div class="settings-row-desc">Controls the welcome sound track.</div>
+                    <div class="settings-row-desc">Controls the background soundtrack.</div>
                 </div>
-
                 <div class="settings-row">
                     <button class="settings-toggle is-on" id="soundToggle" type="button" aria-pressed="true">SFX: ON</button>
-                    <div class="settings-row-desc">Future sound effects (stored for now).</div>
+                    <div class="settings-row-desc">Sound effects for actions.</div>
                 </div>
-
                 <div class="settings-footnote">Your preferences are saved on this device.</div>
             </div>
         </div>
@@ -189,27 +203,11 @@
 </div>
 
 <!-- WELCOME AUDIO -->
-<audio
-    id="welcomeAudio"
-    src="../audio/Welcome to Yassi's Game.mp3"
-    preload="auto"
-    playsinline
-    aria-label="Welcome to Yassi's Game audio"
-    style="display:none"
-</audio>
+<audio id="welcomeAudio" src="../audio/Welcome to Yassi's Game.mp3" preload="auto" playsinline aria-label="Welcome audio" style="display:none"></audio>
 
 <!-- BACKGROUND MUSIC AUDIO -->
-<audio
-    id="backgroundAudio"
-    src="../audio/sound/bg-yassi-sound.mp3"
-    preload="auto"
-    loop
-    playsinline
-    aria-label="Background music"
-    style="display:none"
-></audio>
+<audio id="backgroundAudio" src="../audio/sound/bg-yassi-sound.mp3" preload="auto" loop playsinline aria-label="Background music" style="display:none"></audio>
 
 <script src="../js/app.js"></script>
-<script src="../js/settings.js"></script>
 </body>
 </html>

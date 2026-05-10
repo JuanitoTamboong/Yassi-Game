@@ -1,3 +1,5 @@
+/* ===== yassi-dashboard.css - Complete Styles ===== */
+
 * {
     margin: 0;
     padding: 0;
@@ -18,6 +20,111 @@ body {
     margin: 0 !important;
 }
 
+/* ===== MODERN ROTATE WARNING - FIXED DESIGN MATCHING IMAGE ===== */
+.rotate-warning {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    z-index: 20000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    backdrop-filter: blur(8px);
+}
+
+.rotate-warning.active {
+    display: flex;
+}
+
+.rotate-content {
+    padding: 32px 28px;
+    background: linear-gradient(145deg, rgba(0,0,0,0.85), rgba(10,15,28,0.9));
+    border-radius: 56px;
+    border: 2px solid rgba(255, 212, 74, 0.5);
+    box-shadow: 0 30px 70px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.08);
+    animation: warningPulse 1.3s ease-in-out infinite;
+    backdrop-filter: blur(12px);
+    min-width: 280px;
+}
+
+/* Clean phone icon with rotation effect */
+.rotate-icon {
+    width: 110px;
+    height: 110px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at 30% 20%, #2a2a4a, #111122);
+    border-radius: 65px;
+    animation: phoneRotate 2s ease-in-out infinite;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5), inset 0 2px 4px rgba(255,255,255,0.1);
+}
+
+.rotate-icon svg {
+    width: 70px;
+    height: 70px;
+    filter: drop-shadow(0 5px 12px rgba(0,0,0,0.4));
+}
+
+.rotate-content h2 {
+    color: #ffd44a;
+    font-size: 26px;
+    margin: 20px 0 8px;
+    letter-spacing: 1px;
+    font-weight: 800;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.6);
+}
+
+.rotate-content h2 span {
+    display: inline-block;
+    font-size: 28px;
+}
+
+.rotate-content p {
+    color: rgba(255,255,245,0.92);
+    font-size: 17px;
+    margin-bottom: 16px;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+.rotate-highlight {
+    background: rgba(126,211,33,0.2);
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 40px;
+    color: #7ed321;
+    font-weight: 800;
+}
+
+.rotate-arrow {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    color: #ffbc2f;
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: 6px;
+    margin-top: 8px;
+}
+
+@keyframes warningPulse {
+    0%, 100% { transform: scale(1); border-color: rgba(255, 212, 74, 0.5); box-shadow: 0 30px 70px rgba(0,0,0,0.5); }
+    50% { transform: scale(1.01); border-color: #ffbc2f; box-shadow: 0 35px 80px rgba(255, 188, 47, 0.25); }
+}
+
+@keyframes phoneRotate {
+    0% { transform: rotate(0deg) scale(1); }
+    20% { transform: rotate(90deg) scale(1.04); }
+    50% { transform: rotate(90deg) scale(1); }
+    70% { transform: rotate(0deg) scale(1.04); }
+    100% { transform: rotate(0deg) scale(1); }
+}
 
 /* ===== GAME CONTAINER ===== */
 .game-container {
@@ -27,16 +134,25 @@ body {
     height: 100dvh;
     background: url('../assets/Yassi-Background.png') center/cover no-repeat;
     overflow: hidden;
-
     max-width: none;
     max-height: none;
+}
+
+/* Fallback gradient if image missing */
+.game-container::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(145deg, rgba(30,50,35,0.3), rgba(15,25,20,0.4));
+    pointer-events: none;
+    z-index: 0;
 }
 
 /* ===== OVERLAY ===== */
 .overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.1), transparent, rgba(0,0,0,0.3));
+    background: linear-gradient(to bottom, rgba(0,0,0,0.1), transparent, rgba(0,0,0,0.25));
     z-index: 1;
 }
 
@@ -195,9 +311,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 
-        0 8px 25px rgba(0,0,0,0.4),
-        inset 0 1px 0 rgba(255,255,255,0.1);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1);
     border: 1px solid rgba(255,255,255,0.1);
     line-height: 1;
     gap: 6px;
@@ -206,9 +320,7 @@ body {
 
 .money-box:hover {
     transform: translateY(-2px);
-    box-shadow: 
-        0 12px 35px rgba(0,0,0,0.5),
-        inset 0 1px 0 rgba(255,255,255,0.2);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.2);
 }
 
 .coin-container {
@@ -280,7 +392,7 @@ body {
     position: absolute;
     pointer-events: none;
     top: 120px;
-    right: 5px;
+    right: 205px;
     width: 130px;
     max-width: 160px;
     background: rgba(15, 20, 35, 0.95);
@@ -416,8 +528,6 @@ body {
     width: auto;
     z-index: 2;
     image-rendering: -webkit-optimize-contrast;
-
-    /* idle animation */
     animation: yassi-idle-move 2.6s ease-in-out infinite;
     will-change: transform;
 }
@@ -425,7 +535,6 @@ body {
 @media (prefers-reduced-motion: reduce) {
     .character { animation: none !important; }
 }
-
 
 /* ===== CURRENT SKIN ===== */
 .current-skin {
@@ -541,7 +650,6 @@ body {
     right: 0;
     width: 100%;
     padding-bottom: env(safe-area-inset-bottom, 0px);
-
     height: 80px;
     backdrop-filter: blur(20px);
     display: flex;
@@ -583,30 +691,7 @@ body {
     filter: drop-shadow(0 2px 3px rgba(0,0,0,0.35));
 }
 
-/* ===== RESPONSIVE - PORTRAIT ===== */
-
-/* Portrait small screens */
-@media (max-width: 480px) and (max-height: 900px) {
-    .top-ui { padding-top: 4px; gap: 4px; }
-    .status-panel { padding: 6px 8px; }
-    .info-panel { top: 110px; right: 2px; width: 120px; }
-    .character { bottom: 80px; height: 360px; }
-    .actions { right: 6px; width: 190px; gap: 6px; }
-    .circle-btn { width: 50px; height: 50px; }
-    .location-panel { top: 200px; }
-    .money-box { width: 98px; padding: 6px 10px; font-size: 13px; height: 34px; }
-}
-
-/* Short portrait screens */
-@media (max-height: 700px) {
-    .info-panel { top: 100px; }
-    .character { height: 340px; bottom: 70px; }
-    .current-skin { bottom: 70px; right: 6px; }
-    .location-panel { top: 180px; }
-}
-
 /* ===== SETTINGS MODAL ===== */
-
 .settings-modal {
     position: absolute;
     inset: 0;
@@ -681,8 +766,6 @@ body {
     border: 1px solid rgba(255,255,255,0.12);
 }
 
-
-
 .settings-row-desc {
     font-size: 13px;
     line-height: 1.35;
@@ -696,7 +779,6 @@ body {
     margin-top: 6px;
 }
 
-/* Better readability for toggle button states */
 .settings-toggle {
     border: 1px solid rgba(255,255,255,0.18);
     cursor: pointer;
@@ -734,310 +816,110 @@ body {
     outline-offset: 2px;
 }
 
-.settings-modal-close {
-    border: 0;
-    background: rgba(0,0,0,0.25);
-    color: white;
-    width: 34px;
-    height: 34px;
-    border-radius: 12px;
-    cursor: pointer;
-    font-weight: 900;
-    transition: transform 0.15s ease, background 0.15s ease;
-}
-
-.settings-modal-close:hover {
-    transform: scale(1.05);
-    background: rgba(0,0,0,0.35);
-}
-
-/* ===== LANDSCAPE MODE - ZERO OVERLAP SYSTEM ===== */
-
-
-/* LANDSCAPE 1: 400px-500px height (Most common) */
-@media (max-height: 500px) and (orientation: landscape) {
-    .top-ui {
-        top: 4px !important;
-        left: 4px !important;
-        right: 4px !important;
-        padding-top: 2px;
-        gap: 3px;
-        align-items: center;
-    }
-    
-    .status-panel {
-        width: 150px !important;
-        padding: 4px 6px !important;
-        max-width: 150px !important;
-    }
-    
-    .bar-title {
-        font-size: 9px !important;
-    }
-    
-    .progress {
-        height: 6px !important;
-    }
-    
-    .money-box {
-        width: 85px !important;
-        height: 30px !important;
-        padding: 4px 6px !important;
-        font-size: 11px !important;
-        gap: 2px !important;
-    }
-    
-    .coin-svg, .dollar-svg {
-        width: 16px !important;
-        height: 16px !important;
-    }
-    
-    .logo img {
-        width: 65px !important;
-        max-height: 55px !important;
-    }
-    
-    /* === INFO PANEL - LEFT SIDE (NO OVERLAP) === */
+/* ===== LANDSCAPE MODE ADAPTATIONS ===== */
+@media (orientation: landscape) {
     .info-panel {
-        top: 72px !important;
-        right: auto !important;
-        left: 8px !important;
-        width: 105px !important;
-        max-width: 120px !important;
+        top: 96px;
+        right: auto;
+        left: 12px;
+        width: 128px;
     }
     
-    .info-header {
-        font-size: 16px !important;
-        padding: 3px 0 !important;
-    }
-    
-    .info-sub {
-        font-size: 8px !important;
-        padding: 1px 0 !important;
-    }
-    
-    .level {
-        font-size: 11px !important;
-    }
-    
-    .exp-text {
-        font-size: 8px !important;
-    }
-    
-    .exp-bar {
-        height: 4px !important;
-        margin-bottom: 4px !important;
-    }
-    
-    .description {
-        font-size: 8px !important;
-        line-height: 1.2 !important;
-    }
-    
-    /* === CHARACTER === */
-    .character {
-        height: 240px !important;
-        bottom: 68px !important;
-        max-height: 40vh !important;
-    }
-    
-    /* === CURRENT SKIN - FAR RIGHT === */
-    .current-skin {
-        bottom: 68px !important;
-        right: 8px !important;
-    }
-    
-    .skin-thumb {
-        width: 48px !important;
-        height: 48px !important;
-        border-width: 3px !important;
-    }
-    
-    .skin-text h3 {
-        font-size: 10px !important;
-    }
-    
-    .skin-text span {
-        font-size: 6px !important;
-    }
-    
-    /* === LOCATION - BELOW INFO PANEL === */
     .location-panel {
-        top: 185px !important;
-        left: 8px !important;
-        max-width: 160px !important;
+        top: 280px;
+        left: 12px;
     }
     
-    .location-title {
-        font-size: 11px !important;
-        padding: 2px 8px !important;
-        margin-bottom: 6px !important;
-        gap: 4px !important;
+    .character {
+        bottom: 85px;
+        height: 560px;
+        max-height: 55vh;
     }
     
-    .location-icon, .location-item-icon {
-        width: 36px !important;
-        height: 36px !important;
+    .current-skin {
+        top: 200px;
+        right: 12px;
     }
     
-    .location-item {
-        font-size: 11px !important;
-        margin-bottom: 4px !important;
-        gap: 6px !important;
-    }
-    
-    /* === ACTION BUTTONS - RIGHT SIDE ONLY === */
     .actions {
-        top:290px !important;
-        right: 12px !important;
-        left: auto !important;
-        width: 160px !important;
-        gap: 6px !important;
-        justify-content: flex-end !important;
+        top: auto;
+        bottom: 100px;
+        right: 30px;
+        width: auto;
+        flex-direction: column;
+        gap: 12px;
     }
     
     .circle-btn {
-        width: 44px !important;
-        height: 44px !important;
+        width: 52px;
+        height: 52px;
     }
     
     .btn-label {
-        font-size: 6px !important;
-    }
-    
-    .icon {
-        font-size: 14px !important;
-    }
-    
-    /* === BOTTOM MENU === */
-    .bottom-menu {
-        height: 62px !important;
-        padding: 0 6px !important;
-    }
-    
-    .menu-icon-img {
-        height: 38px !important;
-        width: 38px !important;
-    }
-    
-    .menu-item {
-        font-size: 8px !important;
-        gap: 1px !important;
-    }
-}
-
-/* LANDSCAPE 2: Ultra compact 300px-400px height */
-@media (max-height: 400px) and (orientation: landscape) {
-    .info-panel {
-        top: 64px !important;
-        left: 6px !important;
-        width: 95px !important;
-    }
-    
-    .location-panel {
-        top: 165px !important;
-        left: 6px !important;
-    }
-    
-    .character {
-        height: 200px !important;
-        bottom: 64px !important;
-    }
-    
-    .current-skin {
-        bottom: 64px !important;
-        right: 6px !important;
-    }
-    
-    .skin-thumb {
-        width: 42px !important;
-        height: 42px !important;
-    }
-    
-    .actions {
-        top: 260px !important;
-        right: 10px !important;
-        width: 140px !important;
-    }
-    
-    .circle-btn {
-        width: 40px !important;
-        height: 40px !important;
+        font-size: 7px;
     }
     
     .bottom-menu {
-        height: 58px !important;
-    }
-    
-    .menu-icon-img {
-        height: 34px !important;
-        width: 34px !important;
+        height: 72px;
     }
 }
 
-/* LANDSCAPE 3: Extreme compact <300px height */
-@media (max-height: 300px) and (orientation: landscape) {
-    .info-panel {
-        top: 54px !important;
-        left: 4px !important;
-        width: 85px !important;
-    }
-    
-    .location-panel {
-        top: 145px !important;
-        left: 4px !important;
-    }
-    
-    .character {
-        height: 160px !important;
-        bottom: 60px !important;
-    }
-    
-    .current-skin {
-        bottom: 60px !important;
-        right: 4px !important;
-    }
-    
-    .actions {
-        top: 220px !important;
-        right: 8px !important;
-    }
-    
-    .bottom-menu {
-        height: 54px !important;
-    }
+@media (orientation: landscape) and (max-height: 500px) {
+    .info-panel { top: 72px; width: 110px; }
+    .info-header { font-size: 18px; padding: 3px 0; }
+    .info-sub { font-size: 8px; }
+    .level { font-size: 11px; }
+    .exp-text { font-size: 7px; }
+    .description { font-size: 8px; }
+    .location-panel { top: 210px; }
+    .location-title { font-size: 10px; padding: 2px 8px; }
+    .location-item { font-size: 11px; margin-bottom: 3px; }
+    .location-icon, .location-item-icon { width: 28px; height: 28px; }
+    .character { height: 200px; bottom: 70px; }
+    .current-skin { bottom: 70px; right: 10px; }
+    .skin-thumb { width: 48px; height: 48px; }
+    .skin-text h3 { font-size: 10px; }
+    .actions { bottom: 70px; right: 10px; gap: 8px; }
+    .circle-btn { width: 44px; height: 44px; }
+    .bottom-menu { height: 62px; }
+    .menu-icon-img { height: 38px; width: 38px; }
 }
 
-/* Wide landscape tablets */
-@media (min-width: 1000px) and (orientation: landscape) {
-    .character {
-        height: 320px !important;
-        max-height: 50vh !important;
-    }
-    
-    .actions {
-        top: 340px !important;
-        width: 240px !important;
-    }
-    
-    .circle-btn {
-        width: 58px !important;
-        height: 58px !important;
-    }
+@media (orientation: landscape) and (max-height: 400px) {
+    .info-panel { top: 5px; left: 530px; width: 120px; }
+    .location-panel { top: 180px; left: 8px; }
+    .character { height: 300px; bottom: 60px; }
+    .current-skin { bottom: 90px; right: 120px; }
+    .actions { bottom: 80px; right: 8px; gap: 6px; }
+    .circle-btn { width: 38px; height: 38px; }
+    .bottom-menu { height: 56px; }
+    .menu-icon-img { height: 32px; width: 32px; }
 }
 
-/* iPhone landscape specific fix */
-@media only screen and (max-height: 360px) and (min-width: 667px) and (orientation: landscape) {
-    .character {
-        height: 180px !important;
-        bottom: 62px !important;
-    }
-    
-    .actions {
-        top: 230px !important;
-    }
-    
-    .bottom-menu {
-        height: 56px !important;
-    }
+@media (orientation: landscape) and (min-width: 900px) and (min-height: 500px) {
+    .character { height: 380px; bottom: 100px; }
+    .actions { bottom: 130px; gap: 15px; }
+    .circle-btn { width: 65px; height: 65px; }
+    .icon { font-size: 24px; }
+    .btn-label { font-size: 9px; }
+    .current-skin { bottom: 130px; }
+    .skin-thumb { width: 70px; height: 70px; }
+    .info-panel { width: 150px; top: 110px; }
+    .location-panel { top: 310px; }
+}
+
+@media (orientation: landscape) and (max-width: 800px) {
+    .top-ui { gap: 4px; top: 6px; left: 6px; right: 6px; }
+    .logo img { width: 65px; }
+    .status-panel { width: 140px; padding: 5px 8px; }
+    .bar-title { font-size: 8px; }
+    .money-box { width: 85px; height: 32px; padding: 4px 8px; font-size: 11px; }
+    .coin-svg, .dollar-svg { width: 16px; height: 16px; }
+}
+
+@media (orientation: landscape) {
+    .current-skin { z-index: 15; }
+    .actions { z-index: 15; }
+    .info-panel, .location-panel { z-index: 12; }
+    .character { z-index: 5; }
 }
