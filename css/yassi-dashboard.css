@@ -817,6 +817,15 @@ body {
 }
 
 /* ===== LANDSCAPE MODE ADAPTATIONS ===== */
+/* Desktop landscape: keep the main landscape positions/sizes stable even if height is large (e.g. desktop resize) */
+@media (min-aspect-ratio: 4/3) {
+    .info-panel { right: auto; left: 12px; width: 128px; }
+    .location-panel { top: 220px; left: 10px; }
+    .character { bottom: 90px; height: 400px; max-height: 60vh; }
+    .current-skin { top: 460px; right: 10px; }
+    .actions { top: 380px; right: 12px; left: auto; width: 220px; flex-direction: row; bottom: auto; }
+}
+
 @media (orientation: landscape) {
     .info-panel {
         top: 96px;
@@ -824,6 +833,7 @@ body {
         left: 12px;
         width: 128px;
     }
+
     
     .location-panel {
         top: 280px;
