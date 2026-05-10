@@ -68,13 +68,10 @@
         overlay.classList.add('is-hidden');
         overlay.setAttribute('aria-hidden', 'true');
 
-        // Stop welcome audio immediately on dismiss/auto-hide.
+        // Auto-hide ONLY visual overlay. Welcome audio should stop too,
+        // but do it without touching background music.
         stopAudio();
 
-        // Background music is controlled ONLY by the MUSIC toggle.
-        // So we do NOT start/stop backgroundAudio here.
-
-        // Small delay before hiding completely for smooth transition
         setTimeout(() => {
             overlay.style.display = 'none';
         }, 300);
@@ -82,7 +79,11 @@
 
 
     // Auto-hide after 5 seconds
-    setTimeout(hide, 5000);
+    setTimeout(function () {
+        hide();
+    }, 5000);
+
+
 
     if (btn) {
         function onUserDismiss() {
